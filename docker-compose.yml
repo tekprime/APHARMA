@@ -1,0 +1,15 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: apharma_postgres
+    environment:
+      POSTGRES_DB: apharma_local_db
+      POSTGRES_USER: apharma_admin
+      POSTGRES_PASSWORD: LocalDevPass123!
+    ports:
+      - "5432:5432"
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+
+volumes:
+  pg_data:
