@@ -1,0 +1,5 @@
+i want to build an auth backend where a user can login 
+with user name and password and a jwt token is generated 
+with a role based on the database enum role. create the auth controller
+and route as well as helper jwt utility. generate a detailed
+technical spec using the template @spec/03a-google-oauth-start.md

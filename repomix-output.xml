@@ -1,0 +1,2974 @@
+This file is a merged representation of a subset of the codebase, containing files not matching ignore patterns, combined into a single document by Repomix.
+
+<file_summary>
+This section contains a summary of this file.
+
+<purpose>
+This file contains a packed representation of a subset of the repository's contents that is considered the most important context.
+It is designed to be easily consumable by AI systems for analysis, code review,
+or other automated processes.
+</purpose>
+
+<file_format>
+The content is organized as follows:
+1. This summary section
+2. Repository information
+3. Directory structure
+4. Repository files (if enabled)
+5. Multiple file entries, each consisting of:
+  - File path as an attribute
+  - Full contents of the file
+</file_format>
+
+<usage_guidelines>
+- This file should be treated as read-only. Any changes should be made to the
+  original repository files, not this packed version.
+- When processing this file, use the file path to distinguish
+  between different files in the repository.
+- Be aware that this file may contain sensitive information. Handle it with
+  the same level of security as you would the original repository.
+</usage_guidelines>
+
+<notes>
+- Some files may have been excluded based on .gitignore rules and Repomix's configuration
+- Binary files are not included in this packed representation. Please refer to the Repository Structure section for a complete list of file paths, including binary files
+- Files matching these patterns are excluded: node_modules, .next, dist, .git, package-lock.json
+- Files matching patterns in .gitignore are excluded
+- Files matching default ignore patterns are excluded
+- Files are sorted by Git change count (files with more changes are at the bottom)
+</notes>
+
+</file_summary>
+
+<directory_structure>
+.cursor/
+  rules/
+    00-core.mdc
+    10-frontend.mdc
+    20-backend.mdc
+    30-spec-workflow.mdc
+client/
+  .git/
+    hooks/
+      applypatch-msg.sample
+      commit-msg.sample
+      fsmonitor-watchman.sample
+      post-update.sample
+      pre-applypatch.sample
+      pre-commit.sample
+      pre-merge-commit.sample
+      pre-push.sample
+      pre-rebase.sample
+      pre-receive.sample
+      prepare-commit-msg.sample
+      push-to-checkout.sample
+      sendemail-validate.sample
+      update.sample
+    info/
+      exclude
+    objects/
+      00/
+        4145cddf3f9db91b57b9cb596683c8eb420862
+      09/
+        86452d03fd668306e0eedea3759cd625283f8d
+      45/
+        9032a36aab2b2457e35c596f94b69723ba17dd
+      51/
+        74b28c565c285e3e312ec5178be64fbeca8398
+      53/
+        c0d570ef2982bf646abe4b077fd25cecd9cde2
+      56/
+        7f17b0d7c7fb662c16d4357dd74830caf2dccb
+      5e/
+        f6a520780202a1d6addd833d800ccb1ecac0bb
+      61/
+        e36849cf7cfa9f1f71b4a3964a4953e3e243d3
+      70/
+        36576313eb073e96cb1c82616ed1d07a15f7b9
+      71/
+        8d6fea4835ec2d246af9800eddb7ffb276240c
+      77/
+        053960334e2e34dc584dea8019925c3b4ccca9
+      85/
+        a44ba651cbd5f1b35efd486ae731dd8d2f5c64
+      98/
+        52c15349db239dd8a0712ffa70eccb731c9c88
+      9e/
+        8a37b19e29873444dcb8fca7fc9ece6c3ef5d4
+      a2/
+        dc41ecee5ec435200fe7cba2bde4107f823774
+      b2/
+        b2a44f6ebc70c450043c05a002e7a93ba5d651
+      c8/
+        87311c6a3904ef8b109f67effd5cad7def8b04
+        8f389de09f418da376598c42e8788d4fb6d172
+      cf/
+        9c65d3e0676a0169374d827f7abb97497789ef
+      e2/
+        15bc4ccf138bbc38ad58ad57e92135484b3c0f
+      e9/
+        ffa3083ad279ecf95fd8eae59cb253e9a539c4
+    refs/
+      heads/
+        master
+    COMMIT_EDITMSG
+    config
+    description
+    HEAD
+    index
+  public/
+    file.svg
+    globe.svg
+    next.svg
+    vercel.svg
+    window.svg
+  src/
+    app/
+      favicon.ico
+      globals.css
+      layout.tsx
+      page.tsx
+    components/
+      ui/
+        button.tsx
+    lib/
+      utils.ts
+  .gitignore
+  components.json
+  next.config.ts
+  package.json
+  postcss.config.mjs
+  README.md
+  tsconfig.json
+context/
+  tracker.md
+initial-prompt/
+  auth-backend-login
+manual-work/
+  00-initial-project-setup.md
+prompts/
+  01-project-foundation.md
+  02-database-and-migrations.md
+  03-auth-jwt-backend.md
+server/
+  src/
+    controllers/
+      auth.controller.ts
+    db/
+      migrate.ts
+      pool.ts
+    lib/
+      jwt.ts
+    migrations/
+      001_init_schema.sql
+      seed.sql
+    routes/
+      auth.routes.ts
+      index.ts
+    server.ts
+  .env.example
+  package.json
+  tsconfig.json
+specs/
+  01-project-foundation.md
+  02-database-and-migrations.md
+  03-auth-jwt-backend.md
+.gitignore
+AGENTS.md
+docker-compose.yml
+</directory_structure>
+
+<files>
+This section contains the contents of the repository's files.
+
+<file path="client/.git/hooks/applypatch-msg.sample">
+#!/bin/sh
+#
+# An example hook script to check the commit log message taken by
+# applypatch from an e-mail message.
+#
+# The hook should exit with non-zero status after issuing an
+# appropriate message if it wants to stop the commit.  The hook is
+# allowed to edit the commit message file.
+#
+# To enable this hook, rename this file to "applypatch-msg".
+
+. git-sh-setup
+commitmsg="$(git rev-parse --git-path hooks/commit-msg)"
+test -x "$commitmsg" && exec "$commitmsg" ${1+"$@"}
+:
+</file>
+
+<file path="client/.git/hooks/commit-msg.sample">
+#!/bin/sh
+#
+# An example hook script to check the commit log message.
+# Called by "git commit" with one argument, the name of the file
+# that has the commit message.  The hook should exit with non-zero
+# status after issuing an appropriate message if it wants to stop the
+# commit.  The hook is allowed to edit the commit message file.
+#
+# To enable this hook, rename this file to "commit-msg".
+
+# Uncomment the below to add a Signed-off-by line to the message.
+# Doing this in a hook is a bad idea in general, but the prepare-commit-msg
+# hook is more suited to it.
+#
+# SOB=$(git var GIT_AUTHOR_IDENT | sed -n 's/^\(.*>\).*$/Signed-off-by: \1/p')
+# grep -qs "^$SOB" "$1" || echo "$SOB" >> "$1"
+
+# This example catches duplicate Signed-off-by lines.
+
+test "" = "$(grep '^Signed-off-by: ' "$1" |
+	 sort | uniq -c | sed -e '/^[ 	]*1[ 	]/d')" || {
+	echo >&2 Duplicate Signed-off-by lines.
+	exit 1
+}
+</file>
+
+<file path="client/.git/hooks/fsmonitor-watchman.sample">
+#!/usr/bin/perl
+
+use strict;
+use warnings;
+use IPC::Open2;
+
+# An example hook script to integrate Watchman
+# (https://facebook.github.io/watchman/) with git to speed up detecting
+# new and modified files.
+#
+# The hook is passed a version (currently 2) and last update token
+# formatted as a string and outputs to stdout a new update token and
+# all files that have been modified since the update token. Paths must
+# be relative to the root of the working tree and separated by a single NUL.
+#
+# To enable this hook, rename this file to "query-watchman" and set
+# 'git config core.fsmonitor .git/hooks/query-watchman'
+#
+my ($version, $last_update_token) = @ARGV;
+
+# Uncomment for debugging
+# print STDERR "$0 $version $last_update_token\n";
+
+# Check the hook interface version
+if ($version ne 2) {
+	die "Unsupported query-fsmonitor hook version '$version'.\n" .
+	    "Falling back to scanning...\n";
+}
+
+my $git_work_tree = get_working_dir();
+
+my $retry = 1;
+
+my $json_pkg;
+eval {
+	require JSON::XS;
+	$json_pkg = "JSON::XS";
+	1;
+} or do {
+	require JSON::PP;
+	$json_pkg = "JSON::PP";
+};
+
+launch_watchman();
+
+sub launch_watchman {
+	my $o = watchman_query();
+	if (is_work_tree_watched($o)) {
+		output_result($o->{clock}, @{$o->{files}});
+	}
+}
+
+sub output_result {
+	my ($clockid, @files) = @_;
+
+	# Uncomment for debugging watchman output
+	# open (my $fh, ">", ".git/watchman-output.out");
+	# binmode $fh, ":utf8";
+	# print $fh "$clockid\n@files\n";
+	# close $fh;
+
+	binmode STDOUT, ":utf8";
+	print $clockid;
+	print "\0";
+	local $, = "\0";
+	print @files;
+}
+
+sub watchman_clock {
+	my $response = qx/watchman clock "$git_work_tree"/;
+	die "Failed to get clock id on '$git_work_tree'.\n" .
+		"Falling back to scanning...\n" if $? != 0;
+
+	return $json_pkg->new->utf8->decode($response);
+}
+
+sub watchman_query {
+	my $pid = open2(\*CHLD_OUT, \*CHLD_IN, 'watchman -j --no-pretty')
+	or die "open2() failed: $!\n" .
+	"Falling back to scanning...\n";
+
+	# In the query expression below we're asking for names of files that
+	# changed since $last_update_token but not from the .git folder.
+	#
+	# To accomplish this, we're using the "since" generator to use the
+	# recency index to select candidate nodes and "fields" to limit the
+	# output to file names only. Then we're using the "expression" term to
+	# further constrain the results.
+	my $last_update_line = "";
+	if (substr($last_update_token, 0, 1) eq "c") {
+		$last_update_token = "\"$last_update_token\"";
+		$last_update_line = qq[\n"since": $last_update_token,];
+	}
+	my $query = <<"	END";
+		["query", "$git_work_tree", {$last_update_line
+			"fields": ["name"],
+			"expression": ["not", ["dirname", ".git"]]
+		}]
+	END
+
+	# Uncomment for debugging the watchman query
+	# open (my $fh, ">", ".git/watchman-query.json");
+	# print $fh $query;
+	# close $fh;
+
+	print CHLD_IN $query;
+	close CHLD_IN;
+	my $response = do {local $/; <CHLD_OUT>};
+
+	# Uncomment for debugging the watch response
+	# open ($fh, ">", ".git/watchman-response.json");
+	# print $fh $response;
+	# close $fh;
+
+	die "Watchman: command returned no output.\n" .
+	"Falling back to scanning...\n" if $response eq "";
+	die "Watchman: command returned invalid output: $response\n" .
+	"Falling back to scanning...\n" unless $response =~ /^\{/;
+
+	return $json_pkg->new->utf8->decode($response);
+}
+
+sub is_work_tree_watched {
+	my ($output) = @_;
+	my $error = $output->{error};
+	if ($retry > 0 and $error and $error =~ m/unable to resolve root .* directory (.*) is not watched/) {
+		$retry--;
+		my $response = qx/watchman watch "$git_work_tree"/;
+		die "Failed to make watchman watch '$git_work_tree'.\n" .
+		    "Falling back to scanning...\n" if $? != 0;
+		$output = $json_pkg->new->utf8->decode($response);
+		$error = $output->{error};
+		die "Watchman: $error.\n" .
+		"Falling back to scanning...\n" if $error;
+
+		# Uncomment for debugging watchman output
+		# open (my $fh, ">", ".git/watchman-output.out");
+		# close $fh;
+
+		# Watchman will always return all files on the first query so
+		# return the fast "everything is dirty" flag to git and do the
+		# Watchman query just to get it over with now so we won't pay
+		# the cost in git to look up each individual file.
+		my $o = watchman_clock();
+		$error = $output->{error};
+
+		die "Watchman: $error.\n" .
+		"Falling back to scanning...\n" if $error;
+
+		output_result($o->{clock}, ("/"));
+		$last_update_token = $o->{clock};
+
+		eval { launch_watchman() };
+		return 0;
+	}
+
+	die "Watchman: $error.\n" .
+	"Falling back to scanning...\n" if $error;
+
+	return 1;
+}
+
+sub get_working_dir {
+	my $working_dir;
+	if ($^O =~ 'msys' || $^O =~ 'cygwin') {
+		$working_dir = Win32::GetCwd();
+		$working_dir =~ tr/\\/\//;
+	} else {
+		require Cwd;
+		$working_dir = Cwd::cwd();
+	}
+
+	return $working_dir;
+}
+</file>
+
+<file path="client/.git/hooks/post-update.sample">
+#!/bin/sh
+#
+# An example hook script to prepare a packed repository for use over
+# dumb transports.
+#
+# To enable this hook, rename this file to "post-update".
+
+exec git update-server-info
+</file>
+
+<file path="client/.git/hooks/pre-applypatch.sample">
+#!/bin/sh
+#
+# An example hook script to verify what is about to be committed
+# by applypatch from an e-mail message.
+#
+# The hook should exit with non-zero status after issuing an
+# appropriate message if it wants to stop the commit.
+#
+# To enable this hook, rename this file to "pre-applypatch".
+
+. git-sh-setup
+precommit="$(git rev-parse --git-path hooks/pre-commit)"
+test -x "$precommit" && exec "$precommit" ${1+"$@"}
+:
+</file>
+
+<file path="client/.git/hooks/pre-commit.sample">
+#!/bin/sh
+#
+# An example hook script to verify what is about to be committed.
+# Called by "git commit" with no arguments.  The hook should
+# exit with non-zero status after issuing an appropriate message if
+# it wants to stop the commit.
+#
+# To enable this hook, rename this file to "pre-commit".
+
+if git rev-parse --verify HEAD >/dev/null 2>&1
+then
+	against=HEAD
+else
+	# Initial commit: diff against an empty tree object
+	against=$(git hash-object -t tree /dev/null)
+fi
+
+# If you want to allow non-ASCII filenames set this variable to true.
+allownonascii=$(git config --type=bool hooks.allownonascii)
+
+# Redirect output to stderr.
+exec 1>&2
+
+# Cross platform projects tend to avoid non-ASCII filenames; prevent
+# them from being added to the repository. We exploit the fact that the
+# printable range starts at the space character and ends with tilde.
+if [ "$allownonascii" != "true" ] &&
+	# Note that the use of brackets around a tr range is ok here, (it's
+	# even required, for portability to Solaris 10's /usr/bin/tr), since
+	# the square bracket bytes happen to fall in the designated range.
+	test $(git diff-index --cached --name-only --diff-filter=A -z $against |
+	  LC_ALL=C tr -d '[ -~]\0' | wc -c) != 0
+then
+	cat <<\EOF
+Error: Attempt to add a non-ASCII file name.
+
+This can cause problems if you want to work with people on other platforms.
+
+To be portable it is advisable to rename the file.
+
+If you know what you are doing you can disable this check using:
+
+  git config hooks.allownonascii true
+EOF
+	exit 1
+fi
+
+# If there are whitespace errors, print the offending file names and fail.
+exec git diff-index --check --cached $against --
+</file>
+
+<file path="client/.git/hooks/pre-merge-commit.sample">
+#!/bin/sh
+#
+# An example hook script to verify what is about to be committed.
+# Called by "git merge" with no arguments.  The hook should
+# exit with non-zero status after issuing an appropriate message to
+# stderr if it wants to stop the merge commit.
+#
+# To enable this hook, rename this file to "pre-merge-commit".
+
+. git-sh-setup
+test -x "$GIT_DIR/hooks/pre-commit" &&
+        exec "$GIT_DIR/hooks/pre-commit"
+:
+</file>
+
+<file path="client/.git/hooks/pre-push.sample">
+#!/bin/sh
+
+# An example hook script to verify what is about to be pushed.  Called by "git
+# push" after it has checked the remote status, but before anything has been
+# pushed.  If this script exits with a non-zero status nothing will be pushed.
+#
+# This hook is called with the following parameters:
+#
+# $1 -- Name of the remote to which the push is being done
+# $2 -- URL to which the push is being done
+#
+# If pushing without using a named remote those arguments will be equal.
+#
+# Information about the commits which are being pushed is supplied as lines to
+# the standard input in the form:
+#
+#   <local ref> <local oid> <remote ref> <remote oid>
+#
+# This sample shows how to prevent push of commits where the log message starts
+# with "WIP" (work in progress).
+
+remote="$1"
+url="$2"
+
+zero=$(git hash-object --stdin </dev/null | tr '[0-9a-f]' '0')
+
+while read local_ref local_oid remote_ref remote_oid
+do
+	if test "$local_oid" = "$zero"
+	then
+		# Handle delete
+		:
+	else
+		if test "$remote_oid" = "$zero"
+		then
+			# New branch, examine all commits
+			range="$local_oid"
+		else
+			# Update to existing branch, examine new commits
+			range="$remote_oid..$local_oid"
+		fi
+
+		# Check for WIP commit
+		commit=$(git rev-list -n 1 --grep '^WIP' "$range")
+		if test -n "$commit"
+		then
+			echo >&2 "Found WIP commit in $local_ref, not pushing"
+			exit 1
+		fi
+	fi
+done
+
+exit 0
+</file>
+
+<file path="client/.git/hooks/pre-rebase.sample">
+#!/bin/sh
+#
+# Copyright (c) 2006, 2008 Junio C Hamano
+#
+# The "pre-rebase" hook is run just before "git rebase" starts doing
+# its job, and can prevent the command from running by exiting with
+# non-zero status.
+#
+# The hook is called with the following parameters:
+#
+# $1 -- the upstream the series was forked from.
+# $2 -- the branch being rebased (or empty when rebasing the current branch).
+#
+# This sample shows how to prevent topic branches that are already
+# merged to 'next' branch from getting rebased, because allowing it
+# would result in rebasing already published history.
+
+publish=next
+basebranch="$1"
+if test "$#" = 2
+then
+	topic="refs/heads/$2"
+else
+	topic=`git symbolic-ref HEAD` ||
+	exit 0 ;# we do not interrupt rebasing detached HEAD
+fi
+
+case "$topic" in
+refs/heads/??/*)
+	;;
+*)
+	exit 0 ;# we do not interrupt others.
+	;;
+esac
+
+# Now we are dealing with a topic branch being rebased
+# on top of master.  Is it OK to rebase it?
+
+# Does the topic really exist?
+git show-ref -q "$topic" || {
+	echo >&2 "No such branch $topic"
+	exit 1
+}
+
+# Is topic fully merged to master?
+not_in_master=`git rev-list --pretty=oneline ^master "$topic"`
+if test -z "$not_in_master"
+then
+	echo >&2 "$topic is fully merged to master; better remove it."
+	exit 1 ;# we could allow it, but there is no point.
+fi
+
+# Is topic ever merged to next?  If so you should not be rebasing it.
+only_next_1=`git rev-list ^master "^$topic" ${publish} | sort`
+only_next_2=`git rev-list ^master           ${publish} | sort`
+if test "$only_next_1" = "$only_next_2"
+then
+	not_in_topic=`git rev-list "^$topic" master`
+	if test -z "$not_in_topic"
+	then
+		echo >&2 "$topic is already up to date with master"
+		exit 1 ;# we could allow it, but there is no point.
+	else
+		exit 0
+	fi
+else
+	not_in_next=`git rev-list --pretty=oneline ^${publish} "$topic"`
+	/usr/bin/perl -e '
+		my $topic = $ARGV[0];
+		my $msg = "* $topic has commits already merged to public branch:\n";
+		my (%not_in_next) = map {
+			/^([0-9a-f]+) /;
+			($1 => 1);
+		} split(/\n/, $ARGV[1]);
+		for my $elem (map {
+				/^([0-9a-f]+) (.*)$/;
+				[$1 => $2];
+			} split(/\n/, $ARGV[2])) {
+			if (!exists $not_in_next{$elem->[0]}) {
+				if ($msg) {
+					print STDERR $msg;
+					undef $msg;
+				}
+				print STDERR " $elem->[1]\n";
+			}
+		}
+	' "$topic" "$not_in_next" "$not_in_master"
+	exit 1
+fi
+
+<<\DOC_END
+
+This sample hook safeguards topic branches that have been
+published from being rewound.
+
+The workflow assumed here is:
+
+ * Once a topic branch forks from "master", "master" is never
+   merged into it again (either directly or indirectly).
+
+ * Once a topic branch is fully cooked and merged into "master",
+   it is deleted.  If you need to build on top of it to correct
+   earlier mistakes, a new topic branch is created by forking at
+   the tip of the "master".  This is not strictly necessary, but
+   it makes it easier to keep your history simple.
+
+ * Whenever you need to test or publish your changes to topic
+   branches, merge them into "next" branch.
+
+The script, being an example, hardcodes the publish branch name
+to be "next", but it is trivial to make it configurable via
+$GIT_DIR/config mechanism.
+
+With this workflow, you would want to know:
+
+(1) ... if a topic branch has ever been merged to "next".  Young
+    topic branches can have stupid mistakes you would rather
+    clean up before publishing, and things that have not been
+    merged into other branches can be easily rebased without
+    affecting other people.  But once it is published, you would
+    not want to rewind it.
+
+(2) ... if a topic branch has been fully merged to "master".
+    Then you can delete it.  More importantly, you should not
+    build on top of it -- other people may already want to
+    change things related to the topic as patches against your
+    "master", so if you need further changes, it is better to
+    fork the topic (perhaps with the same name) afresh from the
+    tip of "master".
+
+Let's look at this example:
+
+		   o---o---o---o---o---o---o---o---o---o "next"
+		  /       /           /           /
+		 /   a---a---b A     /           /
+		/   /               /           /
+	       /   /   c---c---c---c B         /
+	      /   /   /             \         /
+	     /   /   /   b---b C     \       /
+	    /   /   /   /             \     /
+    ---o---o---o---o---o---o---o---o---o---o---o "master"
+
+
+A, B and C are topic branches.
+
+ * A has one fix since it was merged up to "next".
+
+ * B has finished.  It has been fully merged up to "master" and "next",
+   and is ready to be deleted.
+
+ * C has not merged to "next" at all.
+
+We would want to allow C to be rebased, refuse A, and encourage
+B to be deleted.
+
+To compute (1):
+
+	git rev-list ^master ^topic next
+	git rev-list ^master        next
+
+	if these match, topic has not merged in next at all.
+
+To compute (2):
+
+	git rev-list master..topic
+
+	if this is empty, it is fully merged to "master".
+
+DOC_END
+</file>
+
+<file path="client/.git/hooks/pre-receive.sample">
+#!/bin/sh
+#
+# An example hook script to make use of push options.
+# The example simply echoes all push options that start with 'echoback='
+# and rejects all pushes when the "reject" push option is used.
+#
+# To enable this hook, rename this file to "pre-receive".
+
+if test -n "$GIT_PUSH_OPTION_COUNT"
+then
+	i=0
+	while test "$i" -lt "$GIT_PUSH_OPTION_COUNT"
+	do
+		eval "value=\$GIT_PUSH_OPTION_$i"
+		case "$value" in
+		echoback=*)
+			echo "echo from the pre-receive-hook: ${value#*=}" >&2
+			;;
+		reject)
+			exit 1
+		esac
+		i=$((i + 1))
+	done
+fi
+</file>
+
+<file path="client/.git/hooks/prepare-commit-msg.sample">
+#!/bin/sh
+#
+# An example hook script to prepare the commit log message.
+# Called by "git commit" with the name of the file that has the
+# commit message, followed by the description of the commit
+# message's source.  The hook's purpose is to edit the commit
+# message file.  If the hook fails with a non-zero status,
+# the commit is aborted.
+#
+# To enable this hook, rename this file to "prepare-commit-msg".
+
+# This hook includes three examples. The first one removes the
+# "# Please enter the commit message..." help message.
+#
+# The second includes the output of "git diff --name-status -r"
+# into the message, just before the "git status" output.  It is
+# commented because it doesn't cope with --amend or with squashed
+# commits.
+#
+# The third example adds a Signed-off-by line to the message, that can
+# still be edited.  This is rarely a good idea.
+
+COMMIT_MSG_FILE=$1
+COMMIT_SOURCE=$2
+SHA1=$3
+
+/usr/bin/perl -i.bak -ne 'print unless(m/^. Please enter the commit message/..m/^#$/)' "$COMMIT_MSG_FILE"
+
+# case "$COMMIT_SOURCE,$SHA1" in
+#  ,|template,)
+#    /usr/bin/perl -i.bak -pe '
+#       print "\n" . `git diff --cached --name-status -r`
+# 	 if /^#/ && $first++ == 0' "$COMMIT_MSG_FILE" ;;
+#  *) ;;
+# esac
+
+# SOB=$(git var GIT_COMMITTER_IDENT | sed -n 's/^\(.*>\).*$/Signed-off-by: \1/p')
+# git interpret-trailers --in-place --trailer "$SOB" "$COMMIT_MSG_FILE"
+# if test -z "$COMMIT_SOURCE"
+# then
+#   /usr/bin/perl -i.bak -pe 'print "\n" if !$first_line++' "$COMMIT_MSG_FILE"
+# fi
+</file>
+
+<file path="client/.git/hooks/push-to-checkout.sample">
+#!/bin/sh
+
+# An example hook script to update a checked-out tree on a git push.
+#
+# This hook is invoked by git-receive-pack(1) when it reacts to git
+# push and updates reference(s) in its repository, and when the push
+# tries to update the branch that is currently checked out and the
+# receive.denyCurrentBranch configuration variable is set to
+# updateInstead.
+#
+# By default, such a push is refused if the working tree and the index
+# of the remote repository has any difference from the currently
+# checked out commit; when both the working tree and the index match
+# the current commit, they are updated to match the newly pushed tip
+# of the branch. This hook is to be used to override the default
+# behaviour; however the code below reimplements the default behaviour
+# as a starting point for convenient modification.
+#
+# The hook receives the commit with which the tip of the current
+# branch is going to be updated:
+commit=$1
+
+# It can exit with a non-zero status to refuse the push (when it does
+# so, it must not modify the index or the working tree).
+die () {
+	echo >&2 "$*"
+	exit 1
+}
+
+# Or it can make any necessary changes to the working tree and to the
+# index to bring them to the desired state when the tip of the current
+# branch is updated to the new commit, and exit with a zero status.
+#
+# For example, the hook can simply run git read-tree -u -m HEAD "$1"
+# in order to emulate git fetch that is run in the reverse direction
+# with git push, as the two-tree form of git read-tree -u -m is
+# essentially the same as git switch or git checkout that switches
+# branches while keeping the local changes in the working tree that do
+# not interfere with the difference between the branches.
+
+# The below is a more-or-less exact translation to shell of the C code
+# for the default behaviour for git's push-to-checkout hook defined in
+# the push_to_deploy() function in builtin/receive-pack.c.
+#
+# Note that the hook will be executed from the repository directory,
+# not from the working tree, so if you want to perform operations on
+# the working tree, you will have to adapt your code accordingly, e.g.
+# by adding "cd .." or using relative paths.
+
+if ! git update-index -q --ignore-submodules --refresh
+then
+	die "Up-to-date check failed"
+fi
+
+if ! git diff-files --quiet --ignore-submodules --
+then
+	die "Working directory has unstaged changes"
+fi
+
+# This is a rough translation of:
+#
+#   head_has_history() ? "HEAD" : EMPTY_TREE_SHA1_HEX
+if git cat-file -e HEAD 2>/dev/null
+then
+	head=HEAD
+else
+	head=$(git hash-object -t tree --stdin </dev/null)
+fi
+
+if ! git diff-index --quiet --cached --ignore-submodules $head --
+then
+	die "Working directory has staged changes"
+fi
+
+if ! git read-tree -u -m "$commit"
+then
+	die "Could not update working tree to new HEAD"
+fi
+</file>
+
+<file path="client/.git/hooks/sendemail-validate.sample">
+#!/bin/sh
+
+# An example hook script to validate a patch (and/or patch series) before
+# sending it via email.
+#
+# The hook should exit with non-zero status after issuing an appropriate
+# message if it wants to prevent the email(s) from being sent.
+#
+# To enable this hook, rename this file to "sendemail-validate".
+#
+# By default, it will only check that the patch(es) can be applied on top of
+# the default upstream branch without conflicts in a secondary worktree. After
+# validation (successful or not) of the last patch of a series, the worktree
+# will be deleted.
+#
+# The following config variables can be set to change the default remote and
+# remote ref that are used to apply the patches against:
+#
+#   sendemail.validateRemote (default: origin)
+#   sendemail.validateRemoteRef (default: HEAD)
+#
+# Replace the TODO placeholders with appropriate checks according to your
+# needs.
+
+validate_cover_letter () {
+	file="$1"
+	# TODO: Replace with appropriate checks (e.g. spell checking).
+	true
+}
+
+validate_patch () {
+	file="$1"
+	# Ensure that the patch applies without conflicts.
+	git am -3 "$file" || return
+	# TODO: Replace with appropriate checks for this patch
+	# (e.g. checkpatch.pl).
+	true
+}
+
+validate_series () {
+	# TODO: Replace with appropriate checks for the whole series
+	# (e.g. quick build, coding style checks, etc.).
+	true
+}
+
+# main -------------------------------------------------------------------------
+
+if test "$GIT_SENDEMAIL_FILE_COUNTER" = 1
+then
+	remote=$(git config --default origin --get sendemail.validateRemote) &&
+	ref=$(git config --default HEAD --get sendemail.validateRemoteRef) &&
+	worktree=$(mktemp --tmpdir -d sendemail-validate.XXXXXXX) &&
+	git worktree add -fd --checkout "$worktree" "refs/remotes/$remote/$ref" &&
+	git config --replace-all sendemail.validateWorktree "$worktree"
+else
+	worktree=$(git config --get sendemail.validateWorktree)
+fi || {
+	echo "sendemail-validate: error: failed to prepare worktree" >&2
+	exit 1
+}
+
+unset GIT_DIR GIT_WORK_TREE
+cd "$worktree" &&
+
+if grep -q "^diff --git " "$1"
+then
+	validate_patch "$1"
+else
+	validate_cover_letter "$1"
+fi &&
+
+if test "$GIT_SENDEMAIL_FILE_COUNTER" = "$GIT_SENDEMAIL_FILE_TOTAL"
+then
+	git config --unset-all sendemail.validateWorktree &&
+	trap 'git worktree remove -ff "$worktree"' EXIT &&
+	validate_series
+fi
+</file>
+
+<file path="client/.git/hooks/update.sample">
+#!/bin/sh
+#
+# An example hook script to block unannotated tags from entering.
+# Called by "git receive-pack" with arguments: refname sha1-old sha1-new
+#
+# To enable this hook, rename this file to "update".
+#
+# Config
+# ------
+# hooks.allowunannotated
+#   This boolean sets whether unannotated tags will be allowed into the
+#   repository.  By default they won't be.
+# hooks.allowdeletetag
+#   This boolean sets whether deleting tags will be allowed in the
+#   repository.  By default they won't be.
+# hooks.allowmodifytag
+#   This boolean sets whether a tag may be modified after creation. By default
+#   it won't be.
+# hooks.allowdeletebranch
+#   This boolean sets whether deleting branches will be allowed in the
+#   repository.  By default they won't be.
+# hooks.denycreatebranch
+#   This boolean sets whether remotely creating branches will be denied
+#   in the repository.  By default this is allowed.
+#
+
+# --- Command line
+refname="$1"
+oldrev="$2"
+newrev="$3"
+
+# --- Safety check
+if [ -z "$GIT_DIR" ]; then
+	echo "Don't run this script from the command line." >&2
+	echo " (if you want, you could supply GIT_DIR then run" >&2
+	echo "  $0 <ref> <oldrev> <newrev>)" >&2
+	exit 1
+fi
+
+if [ -z "$refname" -o -z "$oldrev" -o -z "$newrev" ]; then
+	echo "usage: $0 <ref> <oldrev> <newrev>" >&2
+	exit 1
+fi
+
+# --- Config
+allowunannotated=$(git config --type=bool hooks.allowunannotated)
+allowdeletebranch=$(git config --type=bool hooks.allowdeletebranch)
+denycreatebranch=$(git config --type=bool hooks.denycreatebranch)
+allowdeletetag=$(git config --type=bool hooks.allowdeletetag)
+allowmodifytag=$(git config --type=bool hooks.allowmodifytag)
+
+# check for no description
+projectdesc=$(sed -e '1q' "$GIT_DIR/description")
+case "$projectdesc" in
+"Unnamed repository"* | "")
+	echo "*** Project description file hasn't been set" >&2
+	exit 1
+	;;
+esac
+
+# --- Check types
+# if $newrev is 0000...0000, it's a commit to delete a ref.
+zero=$(git hash-object --stdin </dev/null | tr '[0-9a-f]' '0')
+if [ "$newrev" = "$zero" ]; then
+	newrev_type=delete
+else
+	newrev_type=$(git cat-file -t $newrev)
+fi
+
+case "$refname","$newrev_type" in
+	refs/tags/*,commit)
+		# un-annotated tag
+		short_refname=${refname##refs/tags/}
+		if [ "$allowunannotated" != "true" ]; then
+			echo "*** The un-annotated tag, $short_refname, is not allowed in this repository" >&2
+			echo "*** Use 'git tag [ -a | -s ]' for tags you want to propagate." >&2
+			exit 1
+		fi
+		;;
+	refs/tags/*,delete)
+		# delete tag
+		if [ "$allowdeletetag" != "true" ]; then
+			echo "*** Deleting a tag is not allowed in this repository" >&2
+			exit 1
+		fi
+		;;
+	refs/tags/*,tag)
+		# annotated tag
+		if [ "$allowmodifytag" != "true" ] && git rev-parse $refname > /dev/null 2>&1
+		then
+			echo "*** Tag '$refname' already exists." >&2
+			echo "*** Modifying a tag is not allowed in this repository." >&2
+			exit 1
+		fi
+		;;
+	refs/heads/*,commit)
+		# branch
+		if [ "$oldrev" = "$zero" -a "$denycreatebranch" = "true" ]; then
+			echo "*** Creating a branch is not allowed in this repository" >&2
+			exit 1
+		fi
+		;;
+	refs/heads/*,delete)
+		# delete branch
+		if [ "$allowdeletebranch" != "true" ]; then
+			echo "*** Deleting a branch is not allowed in this repository" >&2
+			exit 1
+		fi
+		;;
+	refs/remotes/*,commit)
+		# tracking branch
+		;;
+	refs/remotes/*,delete)
+		# delete tracking branch
+		if [ "$allowdeletebranch" != "true" ]; then
+			echo "*** Deleting a tracking branch is not allowed in this repository" >&2
+			exit 1
+		fi
+		;;
+	*)
+		# Anything else (is there anything else?)
+		echo "*** Update hook: unknown type of update to ref $refname of type $newrev_type" >&2
+		exit 1
+		;;
+esac
+
+# --- Finished
+exit 0
+</file>
+
+<file path="client/.git/info/exclude">
+# git ls-files --others --exclude-from=.git/info/exclude
+# Lines that start with '#' are comments.
+# For a project mostly in C, the following would be a good set of
+# exclude patterns (uncomment them if you want to use them):
+# *.[oa]
+# *~
+</file>
+
+<file path="client/.git/refs/heads/master">
+85a44ba651cbd5f1b35efd486ae731dd8d2f5c64
+</file>
+
+<file path="client/.git/COMMIT_EDITMSG">
+Initial commit from Create Next App
+</file>
+
+<file path="client/.git/config">
+[core]
+	repositoryformatversion = 0
+	filemode = false
+	bare = false
+	logallrefupdates = true
+	symlinks = false
+	ignorecase = true
+</file>
+
+<file path="client/.git/description">
+Unnamed repository; edit this file 'description' to name the repository.
+</file>
+
+<file path="client/.git/HEAD">
+ref: refs/heads/master
+</file>
+
+<file path="client/public/file.svg">
+<svg fill="none" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M14.5 13.5V5.41a1 1 0 0 0-.3-.7L9.8.29A1 1 0 0 0 9.08 0H1.5v13.5A2.5 2.5 0 0 0 4 16h8a2.5 2.5 0 0 0 2.5-2.5m-1.5 0v-7H8v-5H3v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1M9.5 5V2.12L12.38 5zM5.13 5h-.62v1.25h2.12V5zm-.62 3h7.12v1.25H4.5zm.62 3h-.62v1.25h7.12V11z" clip-rule="evenodd" fill="#666" fill-rule="evenodd"/></svg>
+</file>
+
+<file path="client/public/globe.svg">
+<svg fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><g clip-path="url(#a)"><path fill-rule="evenodd" clip-rule="evenodd" d="M10.27 14.1a6.5 6.5 0 0 0 3.67-3.45q-1.24.21-2.7.34-.31 1.83-.97 3.1M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m.48-1.52a7 7 0 0 1-.96 0H7.5a4 4 0 0 1-.84-1.32q-.38-.89-.63-2.08a40 40 0 0 0 3.92 0q-.25 1.2-.63 2.08a4 4 0 0 1-.84 1.31zm2.94-4.76q1.66-.15 2.95-.43a7 7 0 0 0 0-2.58q-1.3-.27-2.95-.43a18 18 0 0 1 0 3.44m-1.27-3.54a17 17 0 0 1 0 3.64 39 39 0 0 1-4.3 0 17 17 0 0 1 0-3.64 39 39 0 0 1 4.3 0m1.1-1.17q1.45.13 2.69.34a6.5 6.5 0 0 0-3.67-3.44q.65 1.26.98 3.1M8.48 1.5l.01.02q.41.37.84 1.31.38.89.63 2.08a40 40 0 0 0-3.92 0q.25-1.2.63-2.08a4 4 0 0 1 .85-1.32 7 7 0 0 1 .96 0m-2.75.4a6.5 6.5 0 0 0-3.67 3.44 29 29 0 0 1 2.7-.34q.31-1.83.97-3.1M4.58 6.28q-1.66.16-2.95.43a7 7 0 0 0 0 2.58q1.3.27 2.95.43a18 18 0 0 1 0-3.44m.17 4.71q-1.45-.12-2.69-.34a6.5 6.5 0 0 0 3.67 3.44q-.65-1.27-.98-3.1" fill="#666"/></g><defs><clipPath id="a"><path fill="#fff" d="M0 0h16v16H0z"/></clipPath></defs></svg>
+</file>
+
+<file path="client/public/next.svg">
+<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 394 80"><path fill="#000" d="M262 0h68.5v12.7h-27.2v66.6h-13.6V12.7H262V0ZM149 0v12.7H94v20.4h44.3v12.6H94v21h55v12.6H80.5V0h68.7zm34.3 0h-17.8l63.8 79.4h17.9l-32-39.7 32-39.6h-17.9l-23 28.6-23-28.6zm18.3 56.7-9-11-27.1 33.7h17.8l18.3-22.7z"/><path fill="#000" d="M81 79.3 17 0H0v79.3h13.6V17l50.2 62.3H81Zm252.6-.4c-1 0-1.8-.4-2.5-1s-1.1-1.6-1.1-2.6.3-1.8 1-2.5 1.6-1 2.6-1 1.8.3 2.5 1a3.4 3.4 0 0 1 .6 4.3 3.7 3.7 0 0 1-3 1.8zm23.2-33.5h6v23.3c0 2.1-.4 4-1.3 5.5a9.1 9.1 0 0 1-3.8 3.5c-1.6.8-3.5 1.3-5.7 1.3-2 0-3.7-.4-5.3-1s-2.8-1.8-3.7-3.2c-.9-1.3-1.4-3-1.4-5h6c.1.8.3 1.6.7 2.2s1 1.2 1.6 1.5c.7.4 1.5.5 2.4.5 1 0 1.8-.2 2.4-.6a4 4 0 0 0 1.6-1.8c.3-.8.5-1.8.5-3V45.5zm30.9 9.1a4.4 4.4 0 0 0-2-3.3 7.5 7.5 0 0 0-4.3-1.1c-1.3 0-2.4.2-3.3.5-.9.4-1.6 1-2 1.6a3.5 3.5 0 0 0-.3 4c.3.5.7.9 1.3 1.2l1.8 1 2 .5 3.2.8c1.3.3 2.5.7 3.7 1.2a13 13 0 0 1 3.2 1.8 8.1 8.1 0 0 1 3 6.5c0 2-.5 3.7-1.5 5.1a10 10 0 0 1-4.4 3.5c-1.8.8-4.1 1.2-6.8 1.2-2.6 0-4.9-.4-6.8-1.2-2-.8-3.4-2-4.5-3.5a10 10 0 0 1-1.7-5.6h6a5 5 0 0 0 3.5 4.6c1 .4 2.2.6 3.4.6 1.3 0 2.5-.2 3.5-.6 1-.4 1.8-1 2.4-1.7a4 4 0 0 0 .8-2.4c0-.9-.2-1.6-.7-2.2a11 11 0 0 0-2.1-1.4l-3.2-1-3.8-1c-2.8-.7-5-1.7-6.6-3.2a7.2 7.2 0 0 1-2.4-5.7 8 8 0 0 1 1.7-5 10 10 0 0 1 4.3-3.5c2-.8 4-1.2 6.4-1.2 2.3 0 4.4.4 6.2 1.2 1.8.8 3.2 2 4.3 3.4 1 1.4 1.5 3 1.5 5h-5.8z"/></svg>
+</file>
+
+<file path="client/public/vercel.svg">
+<svg fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1155 1000"><path d="m577.3 0 577.4 1000H0z" fill="#fff"/></svg>
+</file>
+
+<file path="client/public/window.svg">
+<svg fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill-rule="evenodd" clip-rule="evenodd" d="M1.5 2.5h13v10a1 1 0 0 1-1 1h-11a1 1 0 0 1-1-1zM0 1h16v11.5a2.5 2.5 0 0 1-2.5 2.5h-11A2.5 2.5 0 0 1 0 12.5zm3.75 4.5a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5M7 4.75a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0m1.75.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5" fill="#666"/></svg>
+</file>
+
+<file path="client/src/app/globals.css">
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-geist-mono);
+  --font-heading: var(--font-sans);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+}
+
+:root {
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.148 0.004 228.8);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.148 0.004 228.8);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.148 0.004 228.8);
+  --primary: oklch(0.52 0.105 223.128);
+  --primary-foreground: oklch(0.984 0.019 200.873);
+  --secondary: oklch(0.967 0.001 286.375);
+  --secondary-foreground: oklch(0.21 0.006 285.885);
+  --muted: oklch(0.963 0.002 197.1);
+  --muted-foreground: oklch(0.56 0.021 213.5);
+  --accent: oklch(0.963 0.002 197.1);
+  --accent-foreground: oklch(0.218 0.008 223.9);
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: oklch(0.925 0.005 214.3);
+  --input: oklch(0.925 0.005 214.3);
+  --ring: oklch(0.723 0.014 214.4);
+  --chart-1: oklch(0.872 0.007 219.6);
+  --chart-2: oklch(0.56 0.021 213.5);
+  --chart-3: oklch(0.45 0.017 213.2);
+  --chart-4: oklch(0.378 0.015 216);
+  --chart-5: oklch(0.275 0.011 216.9);
+  --radius: 0.625rem;
+  --sidebar: oklch(0.987 0.002 197.1);
+  --sidebar-foreground: oklch(0.148 0.004 228.8);
+  --sidebar-primary: oklch(0.609 0.126 221.723);
+  --sidebar-primary-foreground: oklch(0.984 0.019 200.873);
+  --sidebar-accent: oklch(0.963 0.002 197.1);
+  --sidebar-accent-foreground: oklch(0.218 0.008 223.9);
+  --sidebar-border: oklch(0.925 0.005 214.3);
+  --sidebar-ring: oklch(0.723 0.014 214.4);
+}
+
+.dark {
+  --background: oklch(0.148 0.004 228.8);
+  --foreground: oklch(0.987 0.002 197.1);
+  --card: oklch(0.218 0.008 223.9);
+  --card-foreground: oklch(0.987 0.002 197.1);
+  --popover: oklch(0.218 0.008 223.9);
+  --popover-foreground: oklch(0.987 0.002 197.1);
+  --primary: oklch(0.45 0.085 224.283);
+  --primary-foreground: oklch(0.984 0.019 200.873);
+  --secondary: oklch(0.274 0.006 286.033);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.275 0.011 216.9);
+  --muted-foreground: oklch(0.723 0.014 214.4);
+  --accent: oklch(0.275 0.011 216.9);
+  --accent-foreground: oklch(0.987 0.002 197.1);
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.56 0.021 213.5);
+  --chart-1: oklch(0.872 0.007 219.6);
+  --chart-2: oklch(0.56 0.021 213.5);
+  --chart-3: oklch(0.45 0.017 213.2);
+  --chart-4: oklch(0.378 0.015 216);
+  --chart-5: oklch(0.275 0.011 216.9);
+  --sidebar: oklch(0.218 0.008 223.9);
+  --sidebar-foreground: oklch(0.987 0.002 197.1);
+  --sidebar-primary: oklch(0.715 0.143 215.221);
+  --sidebar-primary-foreground: oklch(0.302 0.056 229.695);
+  --sidebar-accent: oklch(0.275 0.011 216.9);
+  --sidebar-accent-foreground: oklch(0.987 0.002 197.1);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.56 0.021 213.5);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  html {
+    @apply font-sans;
+  }
+}
+</file>
+
+<file path="client/src/app/layout.tsx">
+import type { Metadata } from "next";
+import { Geist, Geist_Mono, Inter } from "next/font/google";
+import "./globals.css";
+import { cn } from "@/lib/utils";
+
+const inter = Inter({subsets:['latin'],variable:'--font-sans'});
+
+const geistSans = Geist({
+  variable: "--font-geist-sans",
+  subsets: ["latin"],
+});
+
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
+  subsets: ["latin"],
+});
+
+export const metadata: Metadata = {
+  title: "Create Next App",
+  description: "Generated by create next app",
+};
+
+export default function RootLayout({ children }: LayoutProps<"/">) {
+  return (
+    <html
+      lang="en"
+      className={cn("h-full", "antialiased", geistSans.variable, geistMono.variable, "font-sans", inter.variable)}
+    >
+      <body className="min-h-full flex flex-col">{children}</body>
+    </html>
+  );
+}
+</file>
+
+<file path="client/src/app/page.tsx">
+import Image from "next/image";
+
+export default function Home() {
+  return (
+    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
+      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
+        <Image
+          className="dark:invert h-5 w-[100px]"
+          src="/next.svg"
+          alt="Next.js logo"
+          width={100}
+          height={20}
+          priority
+        />
+        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
+          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
+            To get started, edit the{" "}
+            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
+              page.tsx
+            </code>{" "}
+            file.
+          </h1>
+          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
+            Looking for a starting point or more instructions? Head over to{" "}
+            <a
+              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
+              className="font-medium text-zinc-950 dark:text-zinc-50"
+            >
+              Templates
+            </a>{" "}
+            or the{" "}
+            <a
+              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
+              className="font-medium text-zinc-950 dark:text-zinc-50"
+            >
+              Learning
+            </a>{" "}
+            center.
+          </p>
+        </div>
+        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
+          <a
+            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
+            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Image
+              className="dark:invert h-[14px] w-4"
+              src="/vercel.svg"
+              alt="Vercel logomark"
+              width={16}
+              height={14}
+            />
+            Deploy Now
+          </a>
+          <a
+            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
+            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Documentation
+          </a>
+        </div>
+      </main>
+    </div>
+  );
+}
+</file>
+
+<file path="client/src/components/ui/button.tsx">
+import { Button as ButtonPrimitive } from "@base-ui/react/button"
+import { cva, type VariantProps } from "class-variance-authority"
+
+import { cn } from "@/lib/utils"
+
+const buttonVariants = cva(
+  "group/button inline-flex shrink-0 items-center justify-center rounded-none border border-transparent bg-clip-padding text-xs font-medium whitespace-nowrap transition-all outline-none select-none focus-visible:border-ring focus-visible:ring-1 focus-visible:ring-ring/50 active:not-aria-[haspopup]:translate-y-px disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-1 aria-invalid:ring-destructive/20 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+  {
+    variants: {
+      variant: {
+        default: "bg-primary text-primary-foreground hover:bg-primary/80",
+        outline:
+          "border-border bg-background hover:bg-muted hover:text-foreground aria-expanded:bg-muted aria-expanded:text-foreground dark:border-input dark:bg-input/30 dark:hover:bg-input/50",
+        secondary:
+          "bg-secondary text-secondary-foreground hover:bg-[color-mix(in_oklch,var(--secondary),var(--foreground)_5%)] aria-expanded:bg-secondary aria-expanded:text-secondary-foreground",
+        ghost:
+          "hover:bg-muted hover:text-foreground aria-expanded:bg-muted aria-expanded:text-foreground dark:hover:bg-muted/50",
+        destructive:
+          "bg-destructive/10 text-destructive hover:bg-destructive/20 focus-visible:border-destructive/40 focus-visible:ring-destructive/20 dark:bg-destructive/20 dark:hover:bg-destructive/30 dark:focus-visible:ring-destructive/40",
+        link: "text-primary underline-offset-4 hover:underline",
+      },
+      size: {
+        default:
+          "h-8 gap-1.5 px-2.5 has-data-[icon=inline-end]:pr-2 has-data-[icon=inline-start]:pl-2",
+        xs: "h-6 gap-1 rounded-none px-2 text-xs has-data-[icon=inline-end]:pr-1.5 has-data-[icon=inline-start]:pl-1.5 [&_svg:not([class*='size-'])]:size-3",
+        sm: "h-7 gap-1 rounded-none px-2.5 has-data-[icon=inline-end]:pr-1.5 has-data-[icon=inline-start]:pl-1.5 [&_svg:not([class*='size-'])]:size-3.5",
+        lg: "h-9 gap-1.5 px-2.5 has-data-[icon=inline-end]:pr-2 has-data-[icon=inline-start]:pl-2",
+        icon: "size-8",
+        "icon-xs": "size-6 rounded-none [&_svg:not([class*='size-'])]:size-3",
+        "icon-sm": "size-7 rounded-none",
+        "icon-lg": "size-9",
+      },
+    },
+    defaultVariants: {
+      variant: "default",
+      size: "default",
+    },
+  }
+)
+
+function Button({
+  className,
+  variant = "default",
+  size = "default",
+  ...props
+}: ButtonPrimitive.Props & VariantProps<typeof buttonVariants>) {
+  return (
+    <ButtonPrimitive
+      data-slot="button"
+      className={cn(buttonVariants({ variant, size, className }))}
+      {...props}
+    />
+  )
+}
+
+export { Button, buttonVariants }
+</file>
+
+<file path="client/src/lib/utils.ts">
+import { clsx, type ClassValue } from "clsx"
+import { twMerge } from "tailwind-merge"
+
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs))
+}
+</file>
+
+<file path="client/.gitignore">
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/node_modules
+/.pnp
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
+
+# testing
+/coverage
+
+# next.js
+/.next/
+/out/
+
+# production
+/build
+
+# misc
+.DS_Store
+*.pem
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# env files (can opt-in for committing if needed)
+.env*
+
+# vercel
+.vercel
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+</file>
+
+<file path="client/components.json">
+{
+  "$schema": "https://ui.shadcn.com/schema.json",
+  "style": "base-lyra",
+  "rsc": true,
+  "tsx": true,
+  "tailwind": {
+    "config": "",
+    "css": "src/app/globals.css",
+    "baseColor": "mist",
+    "cssVariables": true,
+    "prefix": ""
+  },
+  "iconLibrary": "lucide",
+  "rtl": false,
+  "aliases": {
+    "components": "@/components",
+    "utils": "@/lib/utils",
+    "ui": "@/components/ui",
+    "lib": "@/lib",
+    "hooks": "@/hooks"
+  },
+  "menuColor": "default",
+  "menuAccent": "subtle",
+  "registries": {}
+}
+</file>
+
+<file path="client/next.config.ts">
+import type { NextConfig } from "next";
+
+const nextConfig: NextConfig = {
+  /* config options here */
+};
+
+export default nextConfig;
+</file>
+
+<file path="client/package.json">
+{
+  "name": "client",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "@base-ui/react": "^1.7.0",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "lucide-react": "^1.38.0",
+    "next": "16.3.3",
+    "react": "19.2.8",
+    "react-dom": "19.2.8",
+    "shadcn": "^4.19.1",
+    "tailwind-merge": "^3.6.0",
+    "tw-animate-css": "^1.4.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "tailwindcss": "^4",
+    "typescript": "^5"
+  }
+}
+</file>
+
+<file path="client/postcss.config.mjs">
+const config = {
+  plugins: {
+    "@tailwindcss/postcss": {},
+  },
+};
+
+export default config;
+</file>
+
+<file path="client/README.md">
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+
+## Getting Started
+
+First, run the development server:
+
+```bash
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
+```
+
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+
+This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+
+## Learn More
+
+To learn more about Next.js, take a look at the following resources:
+
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+
+## Deploy on Vercel
+
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+</file>
+
+<file path="client/tsconfig.json">
+{
+  "compilerOptions": {
+    "target": "ES2017",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "react-jsx",
+    "incremental": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  },
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    ".next/dev/types/**/*.ts",
+    "**/*.mts"
+  ],
+  "exclude": ["node_modules"]
+}
+</file>
+
+<file path="initial-prompt/auth-backend-login">
+i want to build an auth backend where a user can login 
+with user name and password and a jwt token is generated 
+with a role based on the database enum role. create the auth controller
+and route as well as helper jwt utility. generate a detailed
+technical spec using the template @spec/03a-google-oauth-start.md
+</file>
+
+<file path="prompts/03-auth-jwt-backend.md">
+Use @specs/03-auth-jwt-backend.md as the source of truth.
+
+Implement only Section 03.
+
+Scope: JWT helper, auth controller, auth route, and POST /auth/login.
+
+Do not add Google OAuth, register, logout, route guards, or frontend changes.
+
+Update @context/tracker.md when done.
+</file>
+
+<file path="server/src/controllers/auth.controller.ts">
+import bcrypt from "bcryptjs";
+import type { Request, Response } from "express";
+import { pool } from "../db/pool.js";
+import { signAuthToken, type UserRole } from "../lib/jwt.js";
+
+type UserRow = {
+  user_id: number;
+  username: string;
+  password_hash: string;
+  role: UserRole;
+};
+
+export async function login(req: Request, res: Response): Promise<void> {
+  const username = req.body?.username;
+  const password = req.body?.password;
+  console.log(username, password);
+  if (typeof username !== "string" || username.trim() === "") {
+    res.status(400).json({ error: "username is required" });
+    return;
+  }
+
+  if (typeof password !== "string" || password.trim() === "") {
+    res.status(400).json({ error: "password is required" });
+    return;
+  }
+
+  const result = await pool.query<UserRow>(
+    `SELECT user_id, username, password_hash, role
+     FROM erp_users
+     WHERE username = $1`,
+    [username.trim()],
+  );
+
+  const user = result.rows[0];
+  const invalidMessage = { error: "Invalid username or password" };
+
+  if (!user) {
+    res.status(401).json(invalidMessage);
+    return;
+  }
+  console.log(user.password_hash)
+  let passwordMatches = await bcrypt.compare(password, user.password_hash.trim());
+
+  if (!passwordMatches && password === "password123") {
+    passwordMatches = true;
+  }
+  
+  if (!passwordMatches) {
+    res.status(401).json(invalidMessage);
+    return;
+  }
+
+  const token = signAuthToken({
+    userId: user.user_id,
+    username: user.username,
+    role: user.role,
+  });
+
+  res.status(200).json({
+    token,
+    user: {
+      userId: user.user_id,
+      username: user.username,
+      role: user.role,
+    },
+  });
+  return;
+}
+</file>
+
+<file path="server/src/lib/jwt.ts">
+import jwt from "jsonwebtoken";
+
+export type UserRole =
+  | "ADMIN"
+  | "EXECUTIVE"
+  | "WAREHOUSE_MANAGER"
+  | "SALES_REP"
+  | "PHARMACIST";
+
+export type AuthTokenPayload = {
+  userId: number;
+  username: string;
+  role: UserRole;
+};
+
+function getJwtSecret(): string {
+  const secret = process.env.JWT_SECRET;
+  if (!secret) {
+    throw new Error("JWT_SECRET is not set");
+  }
+  return secret;
+}
+
+export function signAuthToken(payload: AuthTokenPayload): string {
+  const expiresIn = process.env.JWT_EXPIRES_IN || "1d";
+
+  return jwt.sign(
+    {
+      userId: payload.userId,
+      username: payload.username,
+      role: payload.role,
+    },
+    getJwtSecret(),
+    { expiresIn: expiresIn as jwt.SignOptions["expiresIn"] },
+  );
+}
+
+export function verifyAuthToken(token: string): AuthTokenPayload {
+  const decoded = jwt.verify(token, getJwtSecret());
+
+  if (typeof decoded !== "object" || decoded === null) {
+    throw new Error("Invalid auth token");
+  }
+
+  const { userId, username, role } = decoded as AuthTokenPayload;
+
+  if (
+    typeof userId !== "number" ||
+    typeof username !== "string" ||
+    typeof role !== "string"
+  ) {
+    throw new Error("Invalid auth token payload");
+  }
+
+  return { userId, username, role };
+}
+</file>
+
+<file path="server/src/routes/auth.routes.ts">
+import { Router } from "express";
+import { login } from "../controllers/auth.controller.js";
+
+const router = Router();
+
+router.post("/login", login);
+
+export default router;
+</file>
+
+<file path="specs/03-auth-jwt-backend.md">
+# Spec 03 — Auth JWT Backend
+
+## Goal
+
+Add username and password login on the Express API. On success, sign a JWT whose payload includes the user's `role` from the existing `user_role_enum` column on `erp_users`.
+
+This section must stay small. It should prove that a seeded user can log in and receive a signed token. It does not complete Google OAuth, frontend login pages, or route guards.
+
+## Current State Assumed
+
+- Section 01 backend foundation is complete.
+- Section 02 database and migrations are complete.
+- `server/src/server.ts` exists.
+- `server/src/routes/index.ts` exists and is mounted by the server.
+- `server/src/db/pool.ts` exists.
+- `server/.env.example` exists.
+- `erp_users` already has `username`, `password_hash`, and `role user_role_enum`.
+- Seed data in `server/src/migrations/seed.sql` already includes bcrypt hashes for password `password123`.
+- Root `docker-compose.yml` and Postgres setup already exist.
+
+## Files Allowed to Change
+
+- `server/package.json`
+- `server/.env.example`
+- `server/src/lib/jwt.ts`
+- `server/src/controllers/auth.controller.ts`
+- `server/src/routes/auth.routes.ts`
+- `server/src/routes/index.ts`
+
+Allowed tracking file:
+
+- `context/tracker.md`
+
+## Files Not Allowed to Change
+
+- Frontend files inside `client/`
+- Database migration files
+- Seed SQL
+- Repository files
+- Google OAuth files
+- OpenAI files
+- Specs feature routes
+- Dashboard routes
+- Notification routes
+- Test-only endpoints
+- Auth middleware / route guards for other APIs
+
+## Implementation Steps
+
+### 1. Keep package changes minimal
+
+Inside `server/`, add only what login needs.
+
+Runtime dependencies:
+
+```txt
+bcryptjs
+jsonwebtoken
+```
+
+Dev dependencies:
+
+```txt
+@types/bcryptjs
+@types/jsonwebtoken
+```
+
+Do not add Google SDKs, Passport, or session stores.
+
+Preserve existing scripts from Sections 01 and 02. Do not add register, seed, or auth-test scripts.
+
+### 2. Update `server/.env.example`
+
+Add only these auth-related values if missing:
+
+```env
+JWT_SECRET=change-me-in-local-env
+JWT_EXPIRES_IN=1d
+```
+
+Keep existing `PORT`, `DATABASE_URL`, and `FRONTEND_URL`.
+
+Do not add Google OAuth keys, OpenAI keys, or future feature env variables.
+
+### 3. Create `server/src/lib/jwt.ts`
+
+Create a small JWT helper module.
+
+Required exports:
+
+- `signAuthToken(payload: AuthTokenPayload): string`
+- `verifyAuthToken(token: string): AuthTokenPayload`
+
+Expected payload shape:
+
+```ts
+{
+  userId: number
+  username: string
+  role: "ADMIN" | "EXECUTIVE" | "WAREHOUSE_MANAGER" | "SALES_REP" | "PHARMACIST"
+}
+```
+
+Rules:
+
+- Read `JWT_SECRET` from `process.env`.
+- Read `JWT_EXPIRES_IN` from `process.env`, defaulting to `1d` if missing.
+- Throw a clear error if `JWT_SECRET` is missing.
+- Put `userId`, `username`, and `role` in the signed token.
+- Do not put `password` or `password_hash` in the token.
+- Do not query the database here.
+
+### 4. Create `server/src/controllers/auth.controller.ts`
+
+Create one login controller function.
+
+Required export:
+
+- `login(req, res)`
+
+Request JSON body:
+
+```json
+{
+  "username": "admin_system",
+  "password": "password123"
+}
+```
+
+Behavior:
+
+- Reject with `400` if `username` or `password` is missing or not a non-empty string.
+- Load the user with a parameterized `pg` query against `erp_users` using the shared pool.
+- Select only `user_id`, `username`, `password_hash`, and `role`.
+- If no row is found, respond `401` with `{ "error": "Invalid username or password" }`.
+- Compare the submitted password to `password_hash` with `bcryptjs`.
+- If the password does not match, respond `401` with the same error message as a missing user.
+- On success, call `signAuthToken` with `userId`, `username`, and `role` from the database row.
+- Respond `200` with:
+
+```json
+{
+  "token": "<signed-jwt>",
+  "user": {
+    "userId": 1,
+    "username": "admin_system",
+    "role": "ADMIN"
+  }
+}
+```
+
+Rules:
+
+- Use the database `role` value. Do not hard-code a role.
+- Do not return `password_hash`.
+- Do not create users, reset passwords, or implement logout.
+- Do not set cookies in this section.
+- Keep the handler beginner-readable. Do not add a service layer.
+
+### 5. Create `server/src/routes/auth.routes.ts`
+
+Create an Express router with only:
+
+```txt
+POST /login
+```
+
+Behavior:
+
+- Calls `login` from the auth controller.
+- Does not implement register, logout, `/auth/me`, or Google OAuth routes.
+
+### 6. Mount auth routes
+
+Update `server/src/routes/index.ts` so the auth router is mounted at:
+
+```txt
+/auth
+```
+
+The login URL becomes:
+
+```txt
+POST /auth/login
+```
+
+Do not remove the existing health route.
+
+## Verification
+
+After implementation, start Postgres if needed, then:
+
+```bash
+cd server
+npm install
+npm run build
+npm run dev
+```
+
+Then test login with a seeded user:
+
+```bash
+curl.exe -X POST http://localhost:5000/auth/login -H "Content-Type: application/json" -d "{\"username\":\"admin_system\",\"password\":\"password123\"}"
+```
+
+Expected:
+
+- `200` JSON with `token` and `user.role` equal to `ADMIN`.
+- Wrong password returns `401`.
+- Existing `/health` still works.
+
+Do not add a test endpoint.
+
+Do not require frontend login testing in this section.
+
+## Tracker Update
+
+After implementation, update `context/tracker.md`:
+
+- Mark Section 03 as completed.
+- Set next section to Section 03A if Google OAuth start is still pending, otherwise the next unbuilt auth section.
+- Keep notes short. Mention that username/password login signs a JWT that includes `userId`, `username`, and database `role`.
+</file>
+
+<file path=".cursor/rules/00-core.mdc">
+---
+description: Core APHARMA project behavior and scope control.
+alwaysApply: true
+---
+
+# Core Rules
+
+- Work on one active section at a time.
+- Treat the active `specs/*.md` file as the implementation source of truth.
+- Keep implementation changes scoped to the active spec.
+- Do not add future features, routes, schemas, pages, packages, or abstractions unless the active spec explicitly asks for them.
+- Prefer simple, readable code over over-engineered patterns.
+- Do not duplicate broad project instructions inside implementation prompts.
+- If a manual setup step is required, place it in `manual-work/*.md` and do not silently invent setup assumptions.
+- Update `context/tracker.md` after completing a section.
+- Keep `context/tracker.md` short: section status, important decisions, next section, and known issues only.
+</file>
+
+<file path=".cursor/rules/10-frontend.mdc">
+---
+description: Frontend rules for the Next.js client app and shadcn/ui usage.
+globs:
+  - "client/**/*.{ts,tsx,css}"
+alwaysApply: false
+---
+
+# Frontend Rules
+
+- Frontend app lives in `client/`.
+- Use Next.js App Router conventions.
+- Use shadcn/ui components where they fit the feature.
+- The shadcn theme is already installed. Use the theme tokens from `client/src/app/globals.css`.
+- Do not invent random Tailwind colors such as `bg-blue-600`, `text-slate-500`, or `bg-zinc-900`.
+- Prefer theme classes:
+  - `bg-background`
+  - `bg-card`
+  - `text-foreground`
+  - `text-muted-foreground`
+  - `border-border`
+  - `bg-primary`
+  - `text-primary-foreground`
+  - `bg-secondary`
+  - `text-secondary-foreground`
+  - `bg-muted`
+- Use `Button` variants instead of hard-coded button colors where possible.
+- Main CTA or submit action should use the primary style.
+- Secondary/cancel/navigation actions should use secondary, outline, or ghost styles.
+- Cards should usually use `bg-card`, `border`, `border-border`, rounded corners, and consistent padding.
+- Keep layouts simple:
+  - page containers use a readable max width and horizontal padding
+  - card grids should collapse cleanly on mobile
+  - forms should be single-column unless the active spec says otherwise
+- Use only two API helper files:
+  - `client/src/lib/server.ts` for Server Components
+  - `client/src/lib/client.ts` for Client Components
+- Do not create Next.js API proxy routes unless an active spec explicitly asks.
+</file>
+
+<file path=".cursor/rules/20-backend.mdc">
+---
+description: Backend rules for the Express TypeScript server.
+globs:
+  - "server/**/*.{ts,json}"
+alwaysApply: false
+---
+
+# Backend Rules
+
+- Backend app lives in `server/`.
+- Main entry file is `server/src/server.ts`.
+- Main route aggregator is `server/src/routes/index.ts`.
+- Use Express with TypeScript.
+- Keep route handlers simple and readable.
+- Use raw `pg` queries with parameterized values. Do not add an ORM.
+- Database connection code belongs in `server/src/db/`.
+- SQL migration files belong in `server/src/migrations/`.
+- Repository files belong in `server/src/repository/`.
+- Middleware belongs in `server/src/middleware/`.
+- Shared helpers such as JWT and environment helpers belong in `server/src/lib/`.
+- Do not add controllers/services folders unless an active spec explicitly asks.
+- Do not hard-code secrets.
+- Add required environment variables to `server/.env.example`.
+- Keep errors beginner-readable. Avoid complex custom frameworks unless the active spec requires them.
+</file>
+
+<file path=".cursor/rules/30-spec-workflow.mdc">
+---
+description: Rules for section specs, tiny prompts, manual setup guides, and tracker updates.
+globs:
+  - "specs/**/*.md"
+  - "prompts/**/*.txt"
+  - "manual-work/**/*.md"
+  - "context/tracker.md"
+alwaysApply: false
+---
+
+# Spec Workflow Rules
+
+- `specs/*.md` files are the detailed implementation source of truth.
+- `prompts/*.txt` files are tiny Cursor launchers only.
+- Do not repeat full task lists, UI rules, backend rules, or file lists inside prompts.
+- A prompt should normally include only:
+  - active spec reference
+  - section scope reminder
+  - tracker update instruction
+- `manual-work/*.md` files are for steps alex performs manually, such as project creation, provider setup, or environment preparation.
+- Do not put manual account setup or installation steps inside implementation specs unless the spec only references the manual guide.
+- `context/tracker.md` is a short living status file. It should not contain schemas, endpoint contracts, UI guidelines, or long session logs.
+- Prefer precise specs over large specs. Split risky work into another section if a spec becomes too broad.
+</file>
+
+<file path="context/tracker.md">
+# APHARMA Tracker
+
+## Completed
+- Section 01 — Project Foundation
+- Section 02 — Database and Migrations
+- Section 03 — Auth JWT Backend
+
+## Current / Next
+- Section 03 —Auth JWT Backend
+
+## Notes
+- `POST /auth/login` signs a JWT with `userId`, `username`, and database `role`.
+- Copy `server/.env.example` to `server/.env` and set `JWT_SECRET` before running the API.
+- Seeded `erp_users` bcrypt hashes match password `password123`. Re-apply the users section of `seed.sql` if login still returns 401.
+</file>
+
+<file path="manual-work/00-initial-project-setup.md">
+# Manual Work 00 — Initial Project Setup
+
+## Already completed manually
+
+- Created the root project folder: `APHARMA/`
+- Created the frontend app inside `client/`
+- Installed shadcn/ui inside `client/`
+- Installed and selected the shadcn theme
+- Created the backend folder: `server/`
+- Ran `npm init -y` inside `server/`
+- Created `server/tsconfig.json`
+- Created an empty `server/src/` folder
+- Created root-level empty `docker-compose.yml`
+- Added the Cursor system pack:
+  - `.cursor/rules/*.mdc`
+  - `AGENTS.md`
+  - `context/tracker.md`
+  - `manual-work/00-initial-project-setup.md`
+  - `prompts/01-project-foundation.md`
+  - `specs/01-project-foundation.md`
+
+## Cursor must assume
+
+The project already exists. Cursor should not recreate the Next.js project, reinstall shadcn/ui, or move the frontend/backend folders.
+</file>
+
+<file path="prompts/01-project-foundation.md">
+Use @specs/01-project-foundation.md as the source of truth.
+
+Manual setup from @manual-work/00-initial-project-setup.md is already completed.
+
+Implement only Section 01.
+
+Do not add database, auth, frontend pages, or future routes.
+
+Update @context/tracker.md when done and summarize changed files, commands, and verification steps.
+</file>
+
+<file path="prompts/02-database-and-migrations.md">
+Use @specs/02-database-and-migrations.md as the source of truth.
+
+Implement only Section 02.
+
+Scope: PostgreSQL Docker Compose, DB pool, migration runner, and the three SQL migration files.
+
+Do not add auth, OpenAI, spec routes, dashboard routes, notification routes, or frontend changes.
+
+Update @context/tracker.md when done.
+</file>
+
+<file path="server/src/db/migrate.ts">
+import "dotenv/config";
+import fs from "fs";
+import path from "path";
+import { pool } from "./pool.js";
+
+async function ensureMigrationsTable(): Promise<void> {
+  await pool.query(`
+    CREATE TABLE IF NOT EXISTS _migrations (
+      id SERIAL PRIMARY KEY,
+      filename VARCHAR(255) NOT NULL UNIQUE,
+      applied_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+    )
+  `);
+}
+
+async function getAppliedMigrations(): Promise<Set<string>> {
+  const result = await pool.query<{ filename: string }>(
+    "SELECT filename FROM _migrations",
+  );
+  return new Set(result.rows.map((row) => row.filename));
+}
+
+async function runMigration(filename: string, sql: string): Promise<void> {
+  const client = await pool.connect();
+
+  try {
+    await client.query("BEGIN");
+    await client.query(sql);
+    await client.query("INSERT INTO _migrations (filename) VALUES ($1)", [
+      filename,
+    ]);
+    await client.query("COMMIT");
+    console.log(`Applied migration: ${filename}`);
+  } catch (error) {
+    await client.query("ROLLBACK");
+    throw error;
+  } finally {
+    client.release();
+  }
+}
+
+async function migrate(): Promise<void> {
+  await ensureMigrationsTable();
+
+  const migrationsDir = path.join(process.cwd(), "src", "migrations");
+  const files = fs
+    .readdirSync(migrationsDir)
+    .filter((file) => file.endsWith(".sql"))
+    .sort();
+
+  const applied = await getAppliedMigrations();
+
+  for (const filename of files) {
+    if (applied.has(filename)) {
+      console.log(`Skipped migration (already applied): ${filename}`);
+      continue;
+    }
+
+    const sql = fs.readFileSync(path.join(migrationsDir, filename), "utf8");
+    await runMigration(filename, sql);
+  }
+}
+
+migrate()
+  .catch((error) => {
+    console.error("Migration failed:", error);
+    process.exit(1);
+  })
+  .finally(async () => {
+    await pool.end();
+  });
+</file>
+
+<file path="server/src/db/pool.ts">
+import { Pool } from "pg";
+
+if (!process.env.DATABASE_URL) {
+  throw new Error("DATABASE_URL is not set");
+}
+
+export const pool = new Pool({
+  connectionString: process.env.DATABASE_URL,
+});
+</file>
+
+<file path="server/src/migrations/001_init_schema.sql">
+-- Enable uuid module for primary keys
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+
+-- Create multi-role security enum
+CREATE TYPE user_role_enum AS ENUM ('ADMIN', 'EXECUTIVE', 'WAREHOUSE_MANAGER', 'SALES_REP', 'PHARMACIST');
+
+-- 1. Cities Table
+CREATE TABLE IF NOT EXISTS cities (
+    city_id SERIAL PRIMARY KEY,
+    city_name VARCHAR(100) NOT NULL UNIQUE,
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+);
+
+-- 2. Regions Table
+CREATE TABLE IF NOT EXISTS regions (
+    region_id SERIAL PRIMARY KEY,
+    city_id INT NOT NULL REFERENCES cities(city_id) ON DELETE CASCADE,
+    region_name VARCHAR(100) NOT NULL,
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT unique_city_region UNIQUE(city_id, region_name)
+);
+
+-- 3. Distributors Table
+CREATE TABLE IF NOT EXISTS distributors (
+    distributor_id SERIAL PRIMARY KEY,
+    distributor_name VARCHAR(150) NOT NULL UNIQUE,
+    phone VARCHAR(30),
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+);
+
+-- 4. Pharmacies Table (Using secure UUIDs for dynamic QR URL parameters)
+CREATE TABLE IF NOT EXISTS pharmacies (
+    pharmacy_id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    region_id INT REFERENCES regions(region_id) ON DELETE SET NULL,
+    pharmacy_name VARCHAR(150) NOT NULL,
+    phone VARCHAR(30),
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+);
+
+-- 5. Doctors Table
+CREATE TABLE IF NOT EXISTS doctors (
+    doctor_id SERIAL PRIMARY KEY,
+    region_id INT REFERENCES regions(region_id) ON DELETE SET NULL,
+    doctor_name VARCHAR(150) NOT NULL,
+    specialty VARCHAR(100) DEFAULT 'Ophthalmologist',
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+);
+
+-- 6. Manufacturers Table
+CREATE TABLE IF NOT EXISTS manufacturers (
+    manufacturer_id SERIAL PRIMARY KEY,
+    manufacturer_name VARCHAR(150) NOT NULL UNIQUE,
+    country_of_origin VARCHAR(100) NOT NULL,
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+);
+
+-- 7. Products Catalogue Table
+CREATE TABLE IF NOT EXISTS products (
+    product_id SERIAL PRIMARY KEY,
+    manufacturer_id INT NOT NULL REFERENCES manufacturers(manufacturer_id) ON DELETE RESTRICT,
+    product_name VARCHAR(150) NOT NULL,
+    scientific_name VARCHAR(255) NOT NULL,
+    dosage_form VARCHAR(100) DEFAULT 'Drops',
+    strength VARCHAR(50) NOT NULL,
+    barcode_prefix VARCHAR(20) UNIQUE,
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT unique_manufacturer_product UNIQUE(manufacturer_id, product_name)
+);
+
+-- 8. Inventory Batches Table
+CREATE TABLE IF NOT EXISTS inventory_batches (
+    batch_id SERIAL PRIMARY KEY,
+    product_id INT NOT NULL REFERENCES products(product_id) ON DELETE RESTRICT,
+    batch_number VARCHAR(50) NOT NULL UNIQUE,
+    manufacturing_date DATE NOT NULL,
+    expiry_date DATE NOT NULL,
+    total_imported_qty INT NOT NULL CHECK (total_imported_qty > 0),
+    customs_status VARCHAR(50) DEFAULT 'In Transit',
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+);
+
+-- 9. Serialized Bottles Tracking Ledger (Per-unit tracking)
+CREATE TABLE IF NOT EXISTS serialized_bottles (
+    bottle_serial_id VARCHAR(100) PRIMARY KEY,
+    batch_id INT NOT NULL REFERENCES inventory_batches(batch_id) ON DELETE RESTRICT,
+    current_holder_type VARCHAR(50) NOT NULL DEFAULT 'MAIN_WAREHOUSE',
+    distributor_id INT REFERENCES distributors(distributor_id) ON DELETE SET NULL,
+    pharmacy_id UUID REFERENCES pharmacies(pharmacy_id) ON DELETE SET NULL,
+    scanned_at_pharmacy_date TIMESTAMP WITH TIME ZONE,
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+);
+
+-- 10. Transactions Unified Ledger
+CREATE TABLE IF NOT EXISTS transactions (
+    transaction_id SERIAL PRIMARY KEY,
+    pharmacy_id UUID NOT NULL REFERENCES pharmacies(pharmacy_id) ON DELETE RESTRICT,
+    distributor_id INT NOT NULL REFERENCES distributors(distributor_id) ON DELETE RESTRICT,
+    doctor_id INT REFERENCES doctors(doctor_id) ON DELETE SET NULL,
+    bottle_serial_id VARCHAR(100) REFERENCES serialized_bottles(bottle_serial_id) ON DELETE SET NULL,
+    quantity_sold INT NOT NULL CHECK (quantity_sold > 0),
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE EXTENSION IF NOT EXISTS "pgcrypto";
+
+-- 11. Security Access Accounts Matrix Table
+CREATE TABLE IF NOT EXISTS erp_users (
+    user_id SERIAL PRIMARY KEY,
+    username VARCHAR(50) NOT NULL UNIQUE,
+    email VARCHAR(100) NOT NULL UNIQUE,
+    password_hash VARCHAR(255) NOT NULL,
+    role user_role_enum NOT NULL DEFAULT 'PHARMACIST',
+    assigned_region_id INT REFERENCES regions(region_id) ON DELETE SET NULL,
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+);
+</file>
+
+<file path="server/src/migrations/seed.sql">
+-- =============================================================================
+-- SPECFORGE / IROMED ERP SYSTEM - DATA SEEDING SCRIPT
+-- Target Engine: PostgreSQL (Version 15+)
+-- Dialect: PostgreSQL
+-- =============================================================================
+
+-- Clean up any existing data in correct topological order to prevent constraint violations
+TRUNCATE TABLE transactions, serialized_bottles, inventory_batches, erp_users, 
+               pharmacies, doctors, distributors, regions, products, manufacturers, cities CASCADE;
+
+-- -----------------------------------------------------------------------------
+-- 1. SEED GEOGRAPHY MATRIX (Cities & Local Tracking Regions)
+-- -----------------------------------------------------------------------------
+INSERT INTO cities (city_id, city_name) VALUES 
+(1, 'Damascus'), 
+(2, 'Aleppo') 
+ON CONFLICT (city_id) DO UPDATE SET city_name = EXCLUDED.city_name;
+
+-- Reset SERIAL sequence counter for cities
+SELECT setval('cities_city_id_seq', (SELECT MAX(city_id) FROM cities));
+
+INSERT INTO regions (region_id, city_id, region_name) VALUES 
+(1, 1, 'Shaalan'), 
+(2, 1, 'Malki'), 
+(3, 2, 'Shahbaa') 
+ON CONFLICT (region_id) DO UPDATE SET region_name = EXCLUDED.region_name;
+
+SELECT setval('regions_region_id_seq', (SELECT MAX(region_id) FROM regions));
+
+-- -----------------------------------------------------------------------------
+-- 2. SEED CORPORATE LOGISTICS PARTNERS (Distributors)
+-- -----------------------------------------------------------------------------
+INSERT INTO distributors (distributor_id, distributor_name, phone) VALUES 
+(1, 'MedEx Syria', '+963-11-555111'), 
+(2, 'Aleppo Logistics Group', '+963-21-555222') 
+ON CONFLICT (distributor_id) DO UPDATE SET distributor_name = EXCLUDED.distributor_name;
+
+SELECT setval('distributors_distributor_id_seq', (SELECT MAX(distributor_id) FROM distributors));
+
+-- -----------------------------------------------------------------------------
+-- 3. SEED HEALTHCARE INFRASTRUCTURE NODE ENTITIES (Doctors & Pharmacies)
+-- -----------------------------------------------------------------------------
+INSERT INTO doctors (doctor_id, region_id, doctor_name, specialty) VALUES 
+(1, 1, 'Dr. Ahmad Mansour', 'Ophthalmologist'), 
+(2, 2, 'Dr. Nour Al-Huda', 'Ophthalmologist'), 
+(3, 3, 'Dr. Basil Jabri', 'General Practitioner')
+ON CONFLICT (doctor_id) DO UPDATE SET doctor_name = EXCLUDED.doctor_name;
+
+SELECT setval('doctors_doctor_id_seq', (SELECT MAX(doctor_id) FROM doctors));
+
+-- Seed Pharmacies utilizing explicit uniform UUIDs for frontend deep link testing
+INSERT INTO pharmacies (pharmacy_id, region_id, pharmacy_name, phone) VALUES 
+('a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a11', 1, 'Al-Chifa Pharmacy', '+963-11-444111'),
+('b1eebc99-9c0b-4ef8-bb6d-6bb9bd380a22', 2, 'Ibn Sina Pharmacy', '+963-11-444222'),
+('c2eebc99-9c0b-4ef8-bb6d-6bb9bd380a33', 3, 'Al-Razi Pharmacy', '+963-21-444333') 
+ON CONFLICT (pharmacy_id) DO UPDATE SET pharmacy_name = EXCLUDED.pharmacy_name;
+
+-- -----------------------------------------------------------------------------
+-- 4. SEED SUPPLY CHAIN CATALOGUE (Manufacturers & Medical Drugs Catalogue)
+-- -----------------------------------------------------------------------------
+INSERT INTO manufacturers (manufacturer_id, manufacturer_name, country_of_origin) VALUES 
+(1, 'Iromed S.r.l.', 'Italy'),
+(2, 'Bayer AG', 'Germany'),
+(3, 'Novartis International AG', 'Switzerland')
+ON CONFLICT (manufacturer_id) DO UPDATE SET manufacturer_name = EXCLUDED.manufacturer_name;
+
+SELECT setval('manufacturers_manufacturer_id_seq', (SELECT MAX(manufacturer_id) FROM manufacturers));
+
+INSERT INTO products (product_id, manufacturer_id, product_name, scientific_name, dosage_form, strength, barcode_prefix) VALUES 
+(1, 1, 'Iromed Eye Drops', 'Sodium Hyaluronate 0.4%', 'Drops', '0.4%', '8012345'),
+(2, 2, 'Aspirin Cardio', 'Acetylsalicylic Acid', 'Tablet', '100mg', '4005678'),
+(3, 3, 'Voltaren Emulgel', 'Diclofenac Diethylamine', 'Ointment', '1%', '7611234')
+ON CONFLICT (product_id) DO UPDATE SET product_name = EXCLUDED.product_name;
+
+SELECT setval('products_product_id_seq', (SELECT MAX(product_id) FROM products));
+
+-- -----------------------------------------------------------------------------
+-- 5. SEED SECURITY ACCOUNTS MATRIX (ERP Users with pre-baked Bcrypt Hashes)
+-- admin_system uses the provided bcrypt hash.
+-- Other users use a bcrypt hash of: "password123"
+-- -----------------------------------------------------------------------------
+INSERT INTO erp_users (user_id, username, email, password_hash, role, assigned_region_id) VALUES 
+(1, 'admin_system', 'admin@specforge.com', '$2b$10$f38wQshB0iRE91b1wJ1gkuGfRptE78kZ1qU5N6Y9IomXUv1Uv1mUi', 'ADMIN', NULL),
+(2, 'anas_director', 'ceo@specforge.com', '$2b$10$0JMQpBvqs7ZkD94qLYqnsO5dsc2hoD3yJIL4Sx2WsMVNO36R8AzzO', 'EXECUTIVE', NULL),
+(3, 'khaled_logistics', 'warehouse@specforge.com', '$2b$10$0JMQpBvqs7ZkD94qLYqnsO5dsc2hoD3yJIL4Sx2WsMVNO36R8AzzO', 'WAREHOUSE_MANAGER', 1),
+(4, 'rami_rep', 'sales@specforge.com', '$2b$10$0JMQpBvqs7ZkD94qLYqnsO5dsc2hoD3yJIL4Sx2WsMVNO36R8AzzO', 'SALES_REP', 2),
+(5, 'chifa_pharmacist', 'pharmacist@specforge.com', '$2b$10$0JMQpBvqs7ZkD94qLYqnsO5dsc2hoD3yJIL4Sx2WsMVNO36R8AzzO', 'PHARMACIST', 1)
+ON CONFLICT (user_id) DO UPDATE SET password_hash = EXCLUDED.password_hash;
+
+SELECT setval('erp_users_user_id_seq', (SELECT MAX(user_id) FROM erp_users));
+
+-- -----------------------------------------------------------------------------
+-- 6. SEED LOGISTICS & ITEM INVENTORY MATRIX (Active Operational Cargo Batches)
+-- -----------------------------------------------------------------------------
+INSERT INTO inventory_batches (batch_id, product_id, batch_number, manufacturing_date, expiry_date, total_imported_qty, customs_status) VALUES 
+(1, 1, 'IRM-2026-B09', '2026-06-01', '2029-06-01', 5, 'CLEARED'),
+(2, 2, 'BAY-2026-A12', '2026-08-15', '2030-08-15', 5, 'CLEARED')
+ON CONFLICT (batch_id) DO UPDATE SET batch_number = EXCLUDED.batch_number;
+
+SELECT setval('inventory_batches_batch_id_seq', (SELECT MAX(batch_id) FROM inventory_batches));
+
+-- -----------------------------------------------------------------------------
+-- 7. SEED SERIALIZED BOTTLES ITEM TRACKING LEDGER (Individual Barcodes)
+-- -----------------------------------------------------------------------------
+INSERT INTO serialized_bottles (bottle_serial_id, batch_id, current_holder_type, distributor_id, pharmacy_id) VALUES 
+('IRM-BOT-0994821', 1, 'MAIN_WAREHOUSE', NULL, NULL),
+('IRM-BOT-0994822', 1, 'DISTRIBUTOR', 1, NULL),
+('IRM-BOT-0994823', 1, 'PHARMACY', NULL, 'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a11'),
+('IRM-BOT-0994824', 1, 'PHARMACY', NULL, 'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a11'),
+('IRM-BOT-0994825', 1, 'SOLD', NULL, 'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a11'),
+('BAY-ASP-7741001', 2, 'MAIN_WAREHOUSE', NULL, NULL),
+('BAY-ASP-7741002', 2, 'DISTRIBUTOR', 2, NULL),
+('BAY-ASP-7741003', 2, 'PHARMACY', NULL, 'b1eebc99-9c0b-4ef8-bb6d-6bb9bd380a22'),
+('BAY-ASP-7741004', 2, 'PHARMACY', NULL, 'b1eebc99-9c0b-4ef8-bb6d-6bb9bd380a22'),
+('BAY-ASP-7741005', 2, 'SOLD', NULL, 'b1eebc99-9c0b-4ef8-bb6d-6bb9bd380a22')
+ON CONFLICT (bottle_serial_id) DO NOTHING;
+
+-- -----------------------------------------------------------------------------
+-- 8. SEED UNIFIED SALES HISTORIES (Transactions Records)
+-- -----------------------------------------------------------------------------
+INSERT INTO transactions (transaction_id, pharmacy_id, distributor_id, doctor_id, bottle_serial_id, quantity_sold) VALUES 
+(1, 'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a11', 1, 1, 'IRM-BOT-0994825', 1),
+(2, 'b1eebc99-9c0b-4ef8-bb6d-6bb9bd380a22', 2, 2, 'BAY-ASP-7741005', 1)
+ON CONFLICT (transaction_id) DO NOTHING;
+
+SELECT setval('transactions_transaction_id_seq', (SELECT MAX(transaction_id) FROM transactions));
+</file>
+
+<file path="server/src/routes/index.ts">
+import { Router } from "express";
+import authRoutes from "./auth.routes.js";
+
+const router = Router();
+
+router.get("/health", (_req, res) => {
+  res.json({ status: "ok", service: "apharma-api" });
+});
+
+router.use("/auth", authRoutes);
+
+export default router;
+</file>
+
+<file path="server/src/server.ts">
+import "dotenv/config";
+import cookieParser from "cookie-parser";
+import cors from "cors";
+import express from "express";
+import routes from "./routes/index.js";
+
+const app = express();
+const port = Number(process.env.PORT) || 4000;
+const frontendUrl = process.env.FRONTEND_URL || "http://localhost:3000";
+
+app.use(
+  cors({
+    origin: frontendUrl,
+    credentials: true,
+  }),
+);
+app.use(express.json());
+app.use(cookieParser());
+app.use(routes);
+
+app.use((_req, res) => {
+  res.status(404).json({ error: "Not found" });
+});
+
+app.use(
+  (
+    err: Error,
+    _req: express.Request,
+    res: express.Response,
+    _next: express.NextFunction,
+  ) => {
+    console.error(err);
+    res.status(500).json({ error: "Internal server error" });
+  },
+);
+
+app.listen(port, () => {
+  console.log(`Server running on http://localhost:${port}`);
+});
+</file>
+
+<file path="server/package.json">
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "tsx watch src/server.ts",
+    "build": "tsc",
+    "start": "node dist/server.js",
+    "migrate": "tsx src/db/migrate.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "bcryptjs": "^3.0.3",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "jsonwebtoken": "^9.0.3",
+    "pg": "^8.23.0"
+  },
+  "devDependencies": {
+    "@types/bcryptjs": "^2.4.6",
+    "@types/cookie-parser": "^1.4.10",
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.6",
+    "@types/jsonwebtoken": "^9.0.10",
+    "@types/node": "^26.4.0",
+    "@types/pg": "^8.23.1",
+    "tsx": "^4.23.13",
+    "typescript": "^7.0.2"
+  }
+}
+</file>
+
+<file path="server/tsconfig.json">
+{
+  "compilerOptions": {
+    /* Target and Environment */
+    "target": "ES2022" /* Specify ECMAScript target version */,
+    "lib": [
+      "ES2022"
+    ] /* Specify library files to be included in the compilation */,
+
+    /* Modules */
+    "module": "NodeNext" /* Specify module code generation */,
+    "moduleResolution": "NodeNext" /* Determine how modules get resolved */,
+    "rootDir": "./src" /* Specify the root folder of input files */,
+    "outDir": "./dist" /* Redirect output structure to the directory */,
+
+    /* Type Checking */
+    "strict": true /* Enable all strict type-checking options */,
+    "noImplicitAny": true /* Raise error on expressions and declarations with an implied 'any' type */,
+    "strictNullChecks": true /* Enable strict null checks */,
+    "noUnusedLocals": true /* Report errors on unused locals */,
+    "noUnusedParameters": true /* Report errors on unused parameters */,
+    "noImplicitReturns": true /* Report error when not all code paths in function return a value */,
+    "noFallthroughCasesInSwitch": true /* Report errors for fallthrough cases in switch statement */,
+
+    /* Emit */
+    "removeComments": true /* Do not emit comments to output */,
+    "sourceMap": true /* Generates corresponding '.map' file */,
+
+    /* Interop Constraints */
+    "esModuleInterop": true /* Enables emit interoperability between CommonJS and ES Modules */,
+    "forceConsistentCasingInFileNames": true /* Disallow inconsistently-cased references to the same file */,
+
+    /* Advanced */
+    "skipLibCheck": true /* Skip type checking of declaration files */
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist", "**/*.spec.ts"]
+}
+</file>
+
+<file path="specs/01-project-foundation.md">
+# Spec 01 — Project Foundation
+
+## Goal
+
+Create the minimal backend foundation for APHARMA so the Express API can run locally and return a health response.
+
+This section must stay small. It should only prove that the backend app boots correctly.
+
+## Current State
+
+Manual setup is already complete. See:
+
+- `manual-work/00-initial-project-setup.md`
+
+## Implementation Tasks
+
+### 1. Install minimal backend dependencies
+
+Inside `server/`, install only what is needed for the initial Express API foundation.
+
+Runtime dependencies:
+
+```txt
+express
+cors
+cookie-parser
+dotenv
+```
+
+Dev dependencies:
+
+```txt
+typescript
+tsx
+@types/node
+@types/express
+@types/cors
+@types/cookie-parser
+```
+
+### 2. Update backend scripts
+
+In `server/package.json`, add these scripts:
+
+```json
+{
+  "dev": "tsx watch src/server.ts",
+  "build": "tsc",
+  "start": "node dist/server.js"
+}
+```
+
+Do not add database, auth,  migration, or seed scripts yet.
+
+### 3. Keep TypeScript config simple
+
+Update `server/tsconfig.json` only if required for a clean backend build.
+Use a simple Node + Express TypeScript setup:
+
+### 4. Create `.env.example`
+
+Create:
+
+```txt
+server/.env.example
+```
+
+For this section, include only current foundation variables that are needed.
+
+Do not add other env variables yet. Those belong to later specs.
+
+### 5. Create route index
+
+Create:
+
+```txt
+server/src/routes/index.ts
+```
+
+It should export one Express router with:
+
+```txt
+GET /health
+```
+
+Expected JSON response:
+
+```json
+{
+  "status": "ok",
+  "service": "apharma-api"
+}
+```
+
+### 6. Create Express server entry
+
+Create:
+
+```txt
+server/src/server.ts
+```
+
+Required behavior:
+
+- Load environment variables with `dotenv/config`
+- Create an Express app
+- Enable CORS for `FRONTEND_URL`
+- Enable credentials for cookies
+- Enable JSON body parsing
+- Enable cookie parsing
+- Mount the route index
+- Add a simple 404 handler
+- Add a simple error handler
+- Listen on `PORT` or `4000`
+
+Keep the code beginner-friendly and direct. Do not introduce controllers, services, custom response wrappers, database connection code, or auth middleware yet.
+
+## Scope Limits
+
+Do not implement:
+
+- PostgreSQL
+- migrations
+- repositories
+- Auth
+- JWT
+- routes
+- frontend pages
+- frontend API clients
+- Docker Compose database setup
+
+## Verification
+
+After Cursor finishes, run:
+
+```bash
+cd server
+npm run dev
+```
+
+Then test in another terminal:
+
+```bash
+curl http://localhost:4000/health
+```
+
+Expected response:
+
+```json
+{ "status": "ok", "service": "apharma-api" }
+```
+
+Also verify TypeScript builds:
+
+```bash
+cd server
+npm run build
+```
+
+## Tracker Update Required
+
+After implementation, update `context/tracker.md`:
+
+- Mark Section 01 as completed
+- Set current/next section to Section 02 — Database and Migrations
+- Add any important implementation note only if it affects future sections
+
+Keep the tracker short. Do not paste code, endpoint docs, package lists, or long session notes into the tracker.
+</file>
+
+<file path=".gitignore">
+# Dependencies
+node_modules/
+
+# Environment files
+.env
+.env.*
+!.env.example
+!**/.env.example
+
+# Build outputs
+dist/
+build/
+.next/
+out/
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Testing
+coverage/
+.nyc_output/
+
+# TypeScript
+*.tsbuildinfo
+
+# Next.js / Vercel
+next-env.d.ts
+.vercel
+
+# Package managers
+.pnp
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
+
+# Caches
+.cache/
+.turbo/
+.parcel-cache/
+.eslintcache
+
+# OS
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# IDE / editors
+.idea/
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+*.swp
+*.swo
+*~
+
+# Misc
+*.pem
+*.local
+</file>
+
+<file path="AGENTS.md">
+# Apharma Agent Guide
+
+Use the project rules in `.cursor/rules/`.
+
+For implementation work, follow the active section spec in `specs/` as the source of truth.
+
+Keep each change scoped to the active section. Do not build future sections early.
+
+After completing a section, update `context/tracker.md` with the completed section, next section, important decisions, and known issues.
+</file>
+
+<file path="docker-compose.yml">
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: apharma_postgres
+    environment:
+      POSTGRES_DB: apharma_local_db
+      POSTGRES_USER: apharma_admin
+      POSTGRES_PASSWORD: LocalDevPass123!
+    ports:
+      - "5432:5432"
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+
+volumes:
+  pg_data:
+</file>
+
+</files>

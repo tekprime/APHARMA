@@ -110,6 +110,8 @@ CREATE TABLE IF NOT EXISTS transactions (
     created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
 );
 
+CREATE EXTENSION IF NOT EXISTS "pgcrypto";
+
 -- 11. Security Access Accounts Matrix Table
 CREATE TABLE IF NOT EXISTS erp_users (
     user_id SERIAL PRIMARY KEY,

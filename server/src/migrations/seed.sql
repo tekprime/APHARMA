@@ -76,14 +76,15 @@ SELECT setval('products_product_id_seq', (SELECT MAX(product_id) FROM products))
 
 -- -----------------------------------------------------------------------------
 -- 5. SEED SECURITY ACCOUNTS MATRIX (ERP Users with pre-baked Bcrypt Hashes)
--- All password entries correspond exactly to the text string: "password123"
+-- admin_system uses the provided bcrypt hash.
+-- Other users use a bcrypt hash of: "password123"
 -- -----------------------------------------------------------------------------
 INSERT INTO erp_users (user_id, username, email, password_hash, role, assigned_region_id) VALUES 
 (1, 'admin_system', 'admin@specforge.com', '$2b$10$f38wQshB0iRE91b1wJ1gkuGfRptE78kZ1qU5N6Y9IomXUv1Uv1mUi', 'ADMIN', NULL),
-(2, 'anas_director', 'ceo@specforge.com', '$2b$10$f38wQshB0iRE91b1wJ1gkuGfRptE78kZ1qU5N6Y9IomXUv1Uv1mUi', 'EXECUTIVE', NULL),
-(3, 'khaled_logistics', 'warehouse@specforge.com', '$2b$10$f38wQshB0iRE91b1wJ1gkuGfRptE78kZ1qU5N6Y9IomXUv1Uv1mUi', 'WAREHOUSE_MANAGER', 1),
-(4, 'rami_rep', 'sales@specforge.com', '$2b$10$f38wQshB0iRE91b1wJ1gkuGfRptE78kZ1qU5N6Y9IomXUv1Uv1mUi', 'SALES_REP', 2),
-(5, 'chifa_pharmacist', 'pharmacist@specforge.com', '$2b$10$f38wQshB0iRE91b1wJ1gkuGfRptE78kZ1qU5N6Y9IomXUv1Uv1mUi', 'PHARMACIST', 1)
+(2, 'anas_director', 'ceo@specforge.com', '$2b$10$0JMQpBvqs7ZkD94qLYqnsO5dsc2hoD3yJIL4Sx2WsMVNO36R8AzzO', 'EXECUTIVE', NULL),
+(3, 'khaled_logistics', 'warehouse@specforge.com', '$2b$10$0JMQpBvqs7ZkD94qLYqnsO5dsc2hoD3yJIL4Sx2WsMVNO36R8AzzO', 'WAREHOUSE_MANAGER', 1),
+(4, 'rami_rep', 'sales@specforge.com', '$2b$10$0JMQpBvqs7ZkD94qLYqnsO5dsc2hoD3yJIL4Sx2WsMVNO36R8AzzO', 'SALES_REP', 2),
+(5, 'chifa_pharmacist', 'pharmacist@specforge.com', '$2b$10$0JMQpBvqs7ZkD94qLYqnsO5dsc2hoD3yJIL4Sx2WsMVNO36R8AzzO', 'PHARMACIST', 1)
 ON CONFLICT (user_id) DO UPDATE SET password_hash = EXCLUDED.password_hash;
 
 SELECT setval('erp_users_user_id_seq', (SELECT MAX(user_id) FROM erp_users));
