@@ -37,9 +37,6 @@ Allowed tracking file:
 - Database migration files
 - Seed SQL
 - Repository files
-- Specs feature routes
-- Dashboard routes
-- Notification routes
 - Test-only endpoints
 - Auth middleware / route guards for other APIs
 

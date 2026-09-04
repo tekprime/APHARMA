@@ -1,0 +1,3 @@
+now generate a detailed specification in the spec folder to create an (auth) next group and a login page underneath, the login page is public and contains a shadcn card in the middle of the page and the card has uername and passord and a login button and the page will call the /auth/login backend that we created earlier you can use 
+you can use previous @/spec files as a template to create the login page the login page should set an
+http-only cookie in the browser after receiving the token from the login endpoint 

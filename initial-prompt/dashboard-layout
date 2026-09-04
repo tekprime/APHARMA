@@ -1,0 +1,11 @@
+use the @sepcs folder as a template for creating details spec for a (dashboard) group layout in next js that will contain 
+all subdirectories for different roles mentioned in th sepcs such
+as WAREHOUSE_MANAGER. The dashboard layout would contain a top navigation
+bar with the logo APHARMA on the right and an avatar on the left for the 
+logged in user with the ability to logout and go to the login page
+the dashboard would have a left side bar, use shadcn sidebar and a right
+content panel, create buttons on the sidebar dependent on the logged 
+in role and the right content would depend on the button clicked on
+the left, make the button clicked highlighted, for default page when no
+button is clicked. dont create any directories under (dashboard), 
+we will create them later for each role. 

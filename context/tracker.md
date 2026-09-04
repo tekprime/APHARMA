@@ -4,11 +4,11 @@
 - Section 01 — Project Foundation
 - Section 02 — Database and Migrations
 - Section 03 — Auth JWT Backend
+- Section 04 — Auth Login Page
 
 ## Current / Next
-- Section 03 —Auth JWT Backend
+- Next unbuilt frontend or auth section
 
 ## Notes
-- `POST /auth/login` signs a JWT with `userId`, `username`, and database `role`.
-- Copy `server/.env.example` to `server/.env` and set `JWT_SECRET` before running the API.
-- Seeded `erp_users` bcrypt hashes match password `password123`. Re-apply the users section of `seed.sql` if login still returns 401.
+- `/login` is public, calls `POST /auth/login`, and stores the JWT in an http-only `apharma_token` cookie via `POST /api/auth/session`.
+- Copy `client/.env.example` to `client/.env.local` if you need a custom API URL.
