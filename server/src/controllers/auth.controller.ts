@@ -1,7 +1,7 @@
 import bcrypt from "bcryptjs";
 import type { Request, Response } from "express";
 import { pool } from "../db/pool.js";
-import { signAuthToken, type UserRole } from "../lib/jwt.js";
+import { signAuthToken, verifyAuthToken, type UserRole } from "../lib/jwt.js";
 
 type UserRow = {
   user_id: number;
@@ -65,4 +65,29 @@ export async function login(req: Request, res: Response): Promise<void> {
     },
   });
   return;
+}
+
+export function me(req: Request, res: Response): void {
+  const header = req.headers.authorization;
+  if (typeof header !== "string" || !header.startsWith("Bearer ")) {
+    res.status(401).json({ error: "Unauthorized" });
+    return;
+  }
+
+  const token = header.slice("Bearer ".length).trim();
+  if (!token) {
+    res.status(401).json({ error: "Unauthorized" });
+    return;
+  }
+
+  try {
+    const payload = verifyAuthToken(token);
+    res.status(200).json({
+      userId: payload.userId,
+      username: payload.username,
+      role: payload.role,
+    });
+  } catch {
+    res.status(401).json({ error: "Unauthorized" });
+  }
 }

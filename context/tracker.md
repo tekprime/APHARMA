@@ -5,10 +5,12 @@
 - Section 02 — Database and Migrations
 - Section 03 — Auth JWT Backend
 - Section 04 — Auth Login Page
+- Section 05 — Dashboard Layout
 
 ## Current / Next
-- Next unbuilt frontend or auth section
+- First nested area or statistics section
 
 ## Notes
-- `/login` is public, calls `POST /auth/login`, and stores the JWT in an http-only `apharma_token` cookie via `POST /api/auth/session`.
-- Copy `client/.env.example` to `client/.env.local` if you need a custom API URL.
+- Login redirects to the role dashboard (`/admin`, `/executive`, `/inventory`, `/sales`, `/pharmacist`).
+- `(dashboard)` has a shared layout, role-based sidebar, and Overview placeholder pages.
+- `GET /auth/me` returns the JWT payload. Logout clears the http-only `apharma_token` cookie.
